@@ -1,0 +1,1 @@
+INSERT INTO Movie(pk, id, name) VALUES (default, '1', 'XXX');
