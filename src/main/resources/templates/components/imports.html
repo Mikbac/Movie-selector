@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="scripts">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+    <script th:src="@{/js/scripts.js}"></script>
+</th:block>
+<th:block th:fragment="links">
+    <link rel="stylesheet/less" type="text/css" th:href="@{/less/_all.less}"/>
+</th:block>
+</html>
