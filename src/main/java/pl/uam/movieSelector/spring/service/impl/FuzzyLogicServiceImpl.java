@@ -2,8 +2,6 @@ package pl.uam.movieSelector.spring.service.impl;
 
 import org.springframework.stereotype.Service;
 import pl.uam.movieSelector.exception.InvalidOMDBModelException;
-import pl.uam.movieSelector.model.MovieModel;
-import pl.uam.movieSelector.model.OMDBMovieModel;
 import pl.uam.movieSelector.spring.repository.MovieRepository;
 import pl.uam.movieSelector.spring.repository.OMDBMovieRepository;
 import pl.uam.movieSelector.spring.repository.OMDBRepository;
@@ -24,7 +22,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
     private OMDBMovieRepository omdbMovieRepository;
 
     @Override
-    public void ClassifyOMDBMovie() {
+    public void LoadOMDBMovie() {
 
         movieRepository.findAll()
                 .forEach(m -> omdbMovieRepository.save(omdbRepository.getMovieById(m.getId())
@@ -32,8 +30,8 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
 
         //TODO skonczone na zapisywaniu wyniku z OMDB do DB
 
-        }
-
     }
+
+}
 
 

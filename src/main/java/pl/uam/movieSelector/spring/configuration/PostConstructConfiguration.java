@@ -18,7 +18,7 @@ public class PostConstructConfiguration {
     @EventListener(ApplicationReadyEvent.class)
     public void initOMDBData() {
         log.info("Initializing data from OMDB!");
-        fuzzyLogicService.ClassifyOMDBMovie();
+        fuzzyLogicService.LoadOMDBMovie();
     }
 
 }

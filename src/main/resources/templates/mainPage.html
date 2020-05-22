@@ -10,7 +10,19 @@
     <h1>XXX</h1>
 </header>
 <main>
-XX-XX
+    XX-XX
+    <form>
+        <div th:each="question: ${questions}">
+            <h4 th:text="${question.question}"></h4>
+            <label>
+                <select>
+                    <option value="POOR">XXX1</option>
+                    <option value="FAIR">XXX2</option>
+                    <option value="GOOG">XXX3</option>
+                </select>
+            </label>
+        </div>
+    </form>
 </main>
 <footer>
 </footer>

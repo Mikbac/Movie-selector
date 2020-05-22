@@ -13,4 +13,11 @@ public interface EntityConstants {
         String NAME = "name";
     }
 
+    interface Question {
+        String TABLE = "Query";
+        String PK = "pk";
+        String QUESTION = "question";
+        String USER_ANSWER = "userAnswer";
+    }
+
 }
