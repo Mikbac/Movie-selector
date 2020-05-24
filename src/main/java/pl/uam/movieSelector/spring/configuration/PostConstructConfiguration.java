@@ -5,6 +5,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import pl.uam.movieSelector.spring.service.FuzzyLogicService;
+import pl.uam.movieSelector.spring.service.OMDBMovieService;
 
 import javax.annotation.Resource;
 
@@ -13,12 +14,17 @@ import javax.annotation.Resource;
 public class PostConstructConfiguration {
 
     @Resource
+    private OMDBMovieService omdbMovieService;
+
+    @Resource
     private FuzzyLogicService fuzzyLogicService;
 
     @EventListener(ApplicationReadyEvent.class)
     public void initOMDBData() {
         log.info("Initializing data from OMDB!");
-        fuzzyLogicService.LoadOMDBMovie();
+        omdbMovieService.LoadOMDBMovie();
+        log.info("Predict data from OMDB!");
+        fuzzyLogicService.predictAllMovies();
     }
 
 }

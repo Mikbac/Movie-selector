@@ -6,14 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.uam.movieSelector.data.Data;
-import pl.uam.movieSelector.model.enums.AnswerEnum;
+import pl.uam.movieSelector.data.enums.AnswerEnum;
 
 @Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionData implements Data {
+public class UserQuestionData implements Data {
 
     private Long pk;
     private String description;

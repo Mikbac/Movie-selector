@@ -94,4 +94,7 @@ public class OMDBMovieModel implements Serializable {
     @JsonProperty("Response")
     private String response;
 
+    @JsonProperty("totalSeasons")
+    private String totalSeasons;
+
 }

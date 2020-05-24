@@ -1,3 +1,43 @@
 FUNCTION_BLOCK movie
 
+VAR_INPUT
+    freeTimeBySeasons : REAL;
+    newestByRelease : REAL;
+END_VAR
 
+VAR_OUTPUT
+	score : REAL;
+END_VAR
+
+FUZZIFY freeTimeBySeasons
+	TERM manySeasons := (4, 0) (6, 1);
+	TERM middlingSeasons := (3, 0) (4,1) (5,0);
+	TERM fewSeasons := (0, 1) (2, 0);
+END_FUZZIFY
+
+FUZZIFY newestByRelease
+	TERM new := (2010, 0) (2020, 1);
+	TERM middle := (1999, 0) (2005,1) (2015,0);
+	TERM old := (1995, 1) (2000, 0);
+END_FUZZIFY
+
+DEFUZZIFY score
+	TERM weak := (0,0) (20,1) (45,0);
+	TERM fair := (40,0) (50,1) (60,0);
+	TERM good := (55,0) (65,1) (85,0);
+	TERM veryGood := (80,0) (90,1) (100, 1);
+	METHOD : COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACT : MIN;
+
+	ACCU : MAX;
+		RULE 1 : IF freeTimeBySeasons IS fewSeasons OR newestByRelease IS old THEN score IS weak;
+		RULE 2 : IF freeTimeBySeasons IS middlingSeasons OR newestByRelease IS middle THEN score IS fair;
+		RULE 3 : IF freeTimeBySeasons IS manySeasons OR newestByRelease IS new THEN score IS good;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

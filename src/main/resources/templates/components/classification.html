@@ -15,12 +15,15 @@
                     </td>
                     <h4 th:text="${question.description}"></h4>
                     <select th:name="|questions[${itemStat.index}].userAnswer|">
-                        <option th:value="${T(pl.uam.movieSelector.model.enums.AnswerEnum).GOOD}"
-                                th:text="#{main.page.answer.option.good.text}"></option>
-                        <option th:value="${T(pl.uam.movieSelector.model.enums.AnswerEnum).FAIR}"
-                                th:text="#{main.page.answer.option.fair.text}"></option>
-                        <option th:value="${T(pl.uam.movieSelector.model.enums.AnswerEnum).POOR}"
-                                th:text="#{main.page.answer.option.poor.text}"></option>
+                        <option th:value="${T(pl.uam.movieSelector.data.enums.AnswerEnum).GOOD}"
+                                th:text="#{main.page.answer.option.good.text}"
+                                th:selected="${question.userAnswer == T(pl.uam.movieSelector.data.enums.AnswerEnum).GOOD}"></option>
+                        <option th:value="${T(pl.uam.movieSelector.data.enums.AnswerEnum).FAIR}"
+                                th:text="#{main.page.answer.option.fair.text}"
+                                th:selected="${question.userAnswer == T(pl.uam.movieSelector.data.enums.AnswerEnum).FAIR}"></option>
+                        <option th:value="${T(pl.uam.movieSelector.data.enums.AnswerEnum).POOR}"
+                                th:text="#{main.page.answer.option.poor.text}"
+                                th:selected="${question.userAnswer == T(pl.uam.movieSelector.data.enums.AnswerEnum).POOR}"></option>
                     </select>
                 </tr>
                 </tbody>

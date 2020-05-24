@@ -16,6 +16,6 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class QuestionsData implements Data {
 
-    private ArrayList<QuestionData> questions;
+    private ArrayList<UserQuestionData> questions;
 
 }

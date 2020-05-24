@@ -11,13 +11,18 @@ public interface EntityConstants {
         String PK = "pk";
         String ID = "id";
         String NAME = "name";
+        String SCORE = "score";
     }
 
     interface Question {
         String TABLE = "Question";
         String PK = "pk";
         String DESCRIPTION = "description";
-        String USER_ANSWER = "userAnswer";
+        String BASE_MOVIE_VARIABLE = "baseMovieVariable";
+        String VARIABLE_NAME = "variableName";
+        String POOR_VARIABLE = "poorVariable";
+        String FAIR_VARIABLE = "fairVariable";
+        String GOOD_VARIABLE = "goodVariable";
     }
 
 }

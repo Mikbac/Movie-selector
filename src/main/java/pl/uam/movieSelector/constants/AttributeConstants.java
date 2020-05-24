@@ -6,6 +6,7 @@ public interface AttributeConstants {
 
         interface MainPage {
             String QUESTIONS_LIST = "questionsList";
+            String THE_BEST_MOVIE = "theBestMovie";
         }
 
     }

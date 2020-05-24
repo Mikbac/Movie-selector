@@ -34,4 +34,7 @@ public class MovieModel {
     @Column(name = Movie.ID)
     private String id;
 
+    @Column(name = Movie.SCORE)
+    private Double score;
+
 }

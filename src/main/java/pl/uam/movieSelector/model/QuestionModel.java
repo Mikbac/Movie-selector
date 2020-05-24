@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.uam.movieSelector.constants.EntityConstants;
 import pl.uam.movieSelector.constants.EntityConstants.Question;
-import pl.uam.movieSelector.model.enums.AnswerEnum;
+import pl.uam.movieSelector.model.enums.BaseVariableEnum;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +36,18 @@ public class QuestionModel extends Model {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = Question.USER_ANSWER)
-    private AnswerEnum userAnswerEnum;
+    @Column(name = Question.BASE_MOVIE_VARIABLE)
+    private BaseVariableEnum baseVariable;
 
+    @Column(name = Question.VARIABLE_NAME)
+    private String variableName;
+
+    @Column(name = Question.POOR_VARIABLE)
+    private Long poorVariable;
+
+    @Column(name = Question.FAIR_VARIABLE)
+    private Long fairVariable;
+
+    @Column(name = Question.GOOD_VARIABLE)
+    private Long goodVariable;
 }

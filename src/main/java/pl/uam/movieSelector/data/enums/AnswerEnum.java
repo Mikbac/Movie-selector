@@ -1,7 +1,6 @@
-package pl.uam.movieSelector.model.enums;
+package pl.uam.movieSelector.data.enums;
 
 public enum AnswerEnum {
-
     POOR,
     FAIR,
     GOOD
