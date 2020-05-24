@@ -63,6 +63,12 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                             fis.setVariable(question.getVariableName(), 0);
                         }
                         break;
+                    case RUN_TIME:
+                        fis.setVariable(question.getVariableName(), Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
+                                .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                                .getRuntime().split("\\s+")[0]));
+
+                        break;
 
                 }
                 movie.setScore(getScore(fis));
