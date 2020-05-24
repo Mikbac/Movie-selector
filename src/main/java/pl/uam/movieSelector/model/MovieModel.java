@@ -25,7 +25,7 @@ public class MovieModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable=false, name = Movie.PK)
+    @Column(nullable = false, name = Movie.PK)
     private Long pk;
 
     @Column(name = Movie.NAME)

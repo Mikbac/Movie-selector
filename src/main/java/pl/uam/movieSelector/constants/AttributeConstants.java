@@ -5,7 +5,7 @@ public interface AttributeConstants {
     interface ModelAttributes {
 
         interface MainPage {
-            String QUESTIONS = "questions";
+            String QUESTIONS_LIST = "questionsList";
         }
 
     }

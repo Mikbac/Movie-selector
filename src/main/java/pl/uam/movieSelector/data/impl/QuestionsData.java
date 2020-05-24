@@ -6,17 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.uam.movieSelector.data.Data;
-import pl.uam.movieSelector.model.enums.AnswerEnum;
+
+import java.util.ArrayList;
 
 @Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionData implements Data {
+public class QuestionsData implements Data {
 
-    private Long pk;
-    private String description;
-    private AnswerEnum userAnswer;
+    private ArrayList<QuestionData> questions;
 
 }

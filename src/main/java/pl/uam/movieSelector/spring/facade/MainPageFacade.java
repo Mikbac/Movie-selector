@@ -8,4 +8,6 @@ public interface MainPageFacade {
 
     ArrayList<QuestionData> getAllQueries();
 
+    String predictMovie(ArrayList<QuestionData> questions);
+
 }

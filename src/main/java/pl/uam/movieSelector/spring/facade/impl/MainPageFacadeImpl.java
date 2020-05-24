@@ -29,4 +29,10 @@ public class MainPageFacadeImpl implements MainPageFacade {
 
     }
 
+    @Override
+    public String predictMovie(final ArrayList<QuestionData> questions) {
+        //TODO logika fuzzy logic
+        return null;
+    }
+
 }

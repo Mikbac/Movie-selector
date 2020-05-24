@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="menu-form">
+    <form action="#" th:action="@{'/predict'}" method="POST" th:object="${questionsList}">
+        <fieldset>
+            <table>
+                <tbody>
+                <tr th:each="question, itemStat: *{questions}">
+                    <td>
+                        <input type="hidden" th:name="|questions[${itemStat.index}].pk|" th:value="${question.pk}"/>
+                    </td>
+                    <td>
+                        <input type="hidden" th:name="|questions[${itemStat.index}].description|"
+                               th:value="${question.description}"/>
+                    </td>
+                    <h4 th:text="${question.description}"></h4>
+                    <select th:name="|questions[${itemStat.index}].userAnswer|">
+                        <option th:value="${T(pl.uam.movieSelector.model.enums.AnswerEnum).GOOD}"
+                                th:text="#{main.page.answer.option.good.text}"></option>
+                        <option th:value="${T(pl.uam.movieSelector.model.enums.AnswerEnum).FAIR}"
+                                th:text="#{main.page.answer.option.fair.text}"></option>
+                        <option th:value="${T(pl.uam.movieSelector.model.enums.AnswerEnum).POOR}"
+                                th:text="#{main.page.answer.option.poor.text}"></option>
+                    </select>
+                </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <button type="submit" class="btn btn-lg btn-primary btn-block mb-3"
+                th:text="#{main.page.answer.button.text}"></button>
+    </form>
+</th:block>
+</html>

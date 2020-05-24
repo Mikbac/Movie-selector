@@ -11,16 +11,17 @@ public class QuestionConverter implements Converter<QuestionData, QuestionModel>
     @Override
     public QuestionData convert(final QuestionModel model) {
         return QuestionData.builder()
-                .question(model.getQuestion())
-                .userAnswerEnum(model.getUserAnswerEnum())
+                .pk(model.getPk())
+                .description(model.getDescription())
+                .userAnswer(model.getUserAnswerEnum())
                 .build();
     }
 
     @Override
     public QuestionModel inverseConvert(final QuestionData data) {
         return QuestionModel.builder()
-                .question(data.getQuestion())
-                .userAnswerEnum(data.getUserAnswerEnum())
+                .description(data.getDescription())
+                .userAnswerEnum(data.getUserAnswer())
                 .build();
     }
 }

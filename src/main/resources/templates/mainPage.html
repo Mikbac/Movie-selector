@@ -1,28 +1,22 @@
 <!DOCTYPE html>
-<html th:lang="${language}" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="${language}" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <th:block th:include="components/others :: meta"/>
-    <title>XXX</title>
+    <title th:text="#{main.page.title.text}"></title>
     <th:block th:include="components/imports :: links"/>
 </head>
 <body>
-<header>
-    <h1>XXX</h1>
-</header>
 <main>
-    XX-XX
-    <form>
-        <div th:each="question: ${questions}">
-            <h4 th:text="${question.question}"></h4>
-            <label>
-                <select>
-                    <option value="POOR">XXX1</option>
-                    <option value="FAIR">XXX2</option>
-                    <option value="GOOG">XXX3</option>
-                </select>
-            </label>
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="col-12">
+                <h1 th:text="#{main.page.header.text}"></h1>
+            </div>
+            <div class="col-12">
+                <th:block th:include="components/classification :: menu-form"/>
+            </div>
         </div>
-    </form>
+    </div>
 </main>
 <footer>
 </footer>

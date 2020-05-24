@@ -28,8 +28,6 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                 .forEach(m -> omdbMovieRepository.save(omdbRepository.getMovieById(m.getId())
                         .orElseThrow(InvalidOMDBModelException::new)));
 
-        //TODO skonczone na zapisywaniu wyniku z OMDB do DB
-
     }
 
 }
