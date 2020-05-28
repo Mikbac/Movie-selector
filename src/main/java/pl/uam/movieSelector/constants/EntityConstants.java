@@ -18,11 +18,11 @@ public interface EntityConstants {
         String TABLE = "Question";
         String PK = "pk";
         String DESCRIPTION = "description";
-        String BASE_MOVIE_VARIABLE = "baseMovieVariable";
-        String VARIABLE_NAME = "variableName";
-        String POOR_VARIABLE = "poorVariable";
-        String FAIR_VARIABLE = "fairVariable";
-        String GOOD_VARIABLE = "goodVariable";
+        String BASE_MOVIE_VARIABLE = "base_movie_variable";
+        String VARIABLE_NAME = "variable_name";
+        String START_VARIABLE = "start_variable";
+        String END_VARIABLE = "end_variable";
+        String GOOD_VALUE_RANGE = "good_value_range";
     }
 
 }

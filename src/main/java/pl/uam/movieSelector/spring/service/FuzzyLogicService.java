@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public interface FuzzyLogicService {
 
-    String predictUserAnswers(ArrayList<UserQuestionData> userQuestions);
+    ArrayList<String> predictUserAnswers(ArrayList<UserQuestionData> userQuestions);
 
-    void predictAllMovies();
 }

@@ -9,6 +9,6 @@ INSERT INTO Movie(pk, id, name) VALUES (default, 'tt0363029', 'Rick');
 INSERT INTO Movie(pk, id, name) VALUES (default, 'tt0087803', '1984');
 INSERT INTO Movie(pk, id, name) VALUES (default, 'tt6520930', 'Blinded by the Lights');
 
-INSERT INTO Question(pk, description, base_movie_variable, variable_name, poor_variable, fair_variable, good_variable) VALUES (default, 'Czy masz dużo wolnego czasu?', 'TOTAL_SEASONS','freeTimeBySeasons', 1, 3, 8);
-INSERT INTO Question(pk, description, base_movie_variable, variable_name, poor_variable, fair_variable, good_variable) VALUES (default, 'Czy lubisz nowości?', 'RELEASED','newestByRelease', 1990, 2000, 2019);
-INSERT INTO Question(pk, description, base_movie_variable, variable_name, poor_variable, fair_variable, good_variable) VALUES (default, 'Czy lubisz robić długie przerwy?', 'RUN_TIME','lengthByRunTime', 25, 45, 60);
+INSERT INTO Question(pk, description, base_movie_variable, variable_name, start_variable, end_variable, good_value_range) VALUES (default, 'Czy masz dużo wolnego czasu?', 'TOTAL_SEASONS','freeTimeBySeasons', 1, 6, 4);
+INSERT INTO Question(pk, description, base_movie_variable, variable_name, start_variable, end_variable, good_value_range) VALUES (default, 'Czy lubisz nowości?', 'RELEASED','newestByRelease', 1990, 2019, 10);
+INSERT INTO Question(pk, description, base_movie_variable, variable_name, start_variable, end_variable, good_value_range) VALUES (default, 'Czy lubisz robić długie przerwy?', 'RUN_TIME','lengthByRunTime', 25, 200, 50);

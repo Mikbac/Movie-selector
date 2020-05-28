@@ -16,6 +16,12 @@ import pl.uam.movieSelector.spring.service.FuzzyLogicService;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.positiveOne;
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.positiveThree;
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.positiveTwo;
 
 @Log4j2
 @Service
@@ -34,19 +40,21 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
     private QuestionRepository questionRepository;
 
     @Override
-    public synchronized String predictUserAnswers(ArrayList<UserQuestionData> userQuestions) {
-        final FIS fis = fuzzyLogicRepository.getFIS();
-        addUserVariables(fis, userQuestions);
-        return getMovieWithTheBestScore(getScore(fis));
+    public synchronized ArrayList<String> predictUserAnswers(ArrayList<UserQuestionData> userQuestions) {
+        setRealUserAnswerVariables(userQuestions);
+        predictAllMovies(userQuestions);
+        return getNMoviesWithTheBestScore(3);
 
     }
 
-    @Override
-    public void predictAllMovies() {
-        final FIS fis = fuzzyLogicRepository.getFIS();
+    private void predictAllMovies(final ArrayList<UserQuestionData> userQuestions) {
+        FIS fis;
+        QuestionModel question;
         for (MovieModel movie : movieRepository.findAll()) {
-            for (QuestionModel question : questionRepository.findAll()) {
-                log.info("Predict {} ({})", movie::getName, movie::getId);
+            fis = fuzzyLogicRepository.getFIS();
+            for (UserQuestionData userQuestion : userQuestions) {
+
+                question = getQuestionByUserQuestions(userQuestion);
                 switch (question.getBaseVariable()) {
                     case RELEASED:
                         String date = omdbMovieRepository.findByImdbID(movie.getId())
@@ -69,30 +77,44 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                                 .getRuntime().split("\\s+")[0]));
 
                         break;
-
                 }
-                movie.setScore(getScore(fis));
-                movieRepository.save(movie);
+                fis.setVariable(question.getVariableName() + positiveOne, userQuestion.getRealUserAnswerValue() - question.getGoodValueRange());
+                fis.setVariable(question.getVariableName() + positiveTwo, userQuestion.getRealUserAnswerValue());
+                fis.setVariable(question.getVariableName() + positiveThree, userQuestion.getRealUserAnswerValue() + question.getGoodValueRange());
             }
-
+            fis.evaluate();
+            double movieScore = getScore(fis);
+            log.info("Predict {} ({}) - score: {}", movie::getName, movie::getId, () -> movieScore);
+            movie.setScore(movieScore);
+            movieRepository.save(movie);
         }
 
     }
 
-    private void addUserVariables(final FIS fis, final ArrayList<UserQuestionData> userQuestions) {
+    private void setRealUserAnswerVariables(final ArrayList<UserQuestionData> userQuestions) {
         for (UserQuestionData userQuestion : userQuestions) {
 
             QuestionModel question = getQuestionByUserQuestions(userQuestion);
+            double increasingValue = (question.getEndVariable() - question.getStartVariable()) / 5;
 
             switch (userQuestion.getUserAnswer()) {
-                case POOR:
-                    fis.setVariable(question.getVariableName(), question.getPoorVariable());
+                case DEGREE_ONE:
+                    userQuestion.setRealUserAnswerValue(question.getStartVariable());
                     break;
-                case FAIR:
-                    fis.setVariable(question.getVariableName(), question.getFairVariable());
+                case DEGREE_TWO:
+                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + increasingValue);
                     break;
-                case GOOD:
-                    fis.setVariable(question.getVariableName(), question.getGoodVariable());
+                case DEGREE_THREE:
+                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + (increasingValue * 2));
+                    break;
+                case DEGREE_FOUR:
+                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + (increasingValue * 3));
+                    break;
+                case DEGREE_FIVE:
+                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + (increasingValue * 4));
+                    break;
+                case DEGREE_SIX:
+                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + (increasingValue * 5));
                     break;
             }
         }
@@ -111,18 +133,17 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         return fis.getVariable("score").getValue();
     }
 
-    private String getMovieWithTheBestScore(double userScore) {
-        double bestScore = 100;
-        String bestScoreMovieTitle = null;
+    private ArrayList<String> getNMoviesWithTheBestScore(final int n) {
 
-        for (MovieModel movie : movieRepository.findAll()) {
-            double newScore = Math.abs(userScore - movie.getScore());
-            if (newScore < bestScore) {
-                bestScore = newScore;
-                bestScoreMovieTitle = movie.getName();
-            }
+        ArrayList<String> bestMovies = new ArrayList<>();
+        ArrayList<MovieModel> movies = movieRepository.findAll();
+        movies.sort(Comparator.comparing(MovieModel::getScore));
+        Collections.reverse(movies);
+        for (int i = 0; i < n; i++) {
+            bestMovies.add(movies.get(i).getName());
         }
-        return bestScoreMovieTitle;
+
+        return bestMovies;
     }
 }
 

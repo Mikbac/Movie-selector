@@ -18,5 +18,6 @@ public class UserQuestionData implements Data {
     private Long pk;
     private String description;
     private AnswerEnum userAnswer;
+    private Double realUserAnswerValue;
 
 }

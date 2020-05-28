@@ -14,7 +14,7 @@ import pl.uam.movieSelector.spring.facade.MainPageFacade;
 import javax.annotation.Resource;
 
 import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.QUESTIONS_LIST;
-import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.THE_BEST_MOVIE;
+import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.THE_BEST_MOVIES;
 
 @Controller
 @RequestMapping(Mapping.ROOT)
@@ -33,7 +33,7 @@ public class MainPageController {
     @PostMapping("/predict")
     public String getMovie(@ModelAttribute final QuestionsData questionsList, final Model model) {
         model.addAttribute(QUESTIONS_LIST, questionsList);
-        model.addAttribute(THE_BEST_MOVIE, mainPageFacade.predictMovie(questionsList.getQuestions()));
+        model.addAttribute(THE_BEST_MOVIES, mainPageFacade.predictMovie(questionsList.getQuestions()));
 
         return Views.MAIN_PAGE;
     }

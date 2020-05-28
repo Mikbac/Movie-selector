@@ -42,12 +42,13 @@ public class QuestionModel extends Model {
     @Column(name = Question.VARIABLE_NAME)
     private String variableName;
 
-    @Column(name = Question.POOR_VARIABLE)
-    private Long poorVariable;
+    @Column(name = Question.START_VARIABLE)
+    private Double startVariable;
 
-    @Column(name = Question.FAIR_VARIABLE)
-    private Long fairVariable;
+    @Column(name = Question.END_VARIABLE)
+    private Double endVariable;
 
-    @Column(name = Question.GOOD_VARIABLE)
-    private Long goodVariable;
+    @Column(name = Question.GOOD_VALUE_RANGE)
+    private Double goodValueRange;
+
 }

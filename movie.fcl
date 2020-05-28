@@ -2,8 +2,20 @@ FUNCTION_BLOCK movie
 
 VAR_INPUT
     freeTimeBySeasons : REAL;
+    freeTimeBySeasons_value_positive_one : REAL;
+    freeTimeBySeasons_value_positive_two : REAL;
+    freeTimeBySeasons_value_positive_three : REAL;
+
     newestByRelease : REAL;
+    newestByRelease_value_positive_one : REAL;
+    newestByRelease_value_positive_two : REAL;
+    newestByRelease_value_positive_three : REAL;
+
     lengthByRunTime : REAL;
+    lengthByRunTime_value_positive_one : REAL;
+    lengthByRunTime_value_positive_two : REAL;
+    lengthByRunTime_value_positive_three : REAL;
+
 END_VAR
 
 VAR_OUTPUT
@@ -11,21 +23,21 @@ VAR_OUTPUT
 END_VAR
 
 FUZZIFY freeTimeBySeasons
-	TERM manySeasons := (4, 0) (6, 1);
-	TERM middlingSeasons := (3, 0) (4,1) (5,0);
-	TERM fewSeasons := (0, 1) (2, 0);
+    TERM notEnough := (0, 0) (freeTimeBySeasons_value_positive_one, 0);
+	TERM userExpected := (freeTimeBySeasons_value_positive_one, 0) (freeTimeBySeasons_value_positive_two,1) (freeTimeBySeasons_value_positive_three,0);
+	TERM tooMuch := (freeTimeBySeasons_value_positive_three, 0) (10000, 0);
 END_FUZZIFY
 
 FUZZIFY newestByRelease
-	TERM new := (2010, 0) (2020, 1);
-	TERM middle := (1999, 0) (2005,1) (2015,0);
-	TERM old := (1995, 1) (2000, 0);
+    TERM notEnough := (0, 0) (newestByRelease_value_positive_one, 0);
+	TERM userExpected := (newestByRelease_value_positive_one, 0) (newestByRelease_value_positive_two,1) (newestByRelease_value_positive_three,0);
+	TERM tooMuch := (newestByRelease_value_positive_three, 0) (10000, 0);
 END_FUZZIFY
 
 FUZZIFY lengthByRunTime
-	TERM short := (15, 1) (30, 0);
-	TERM middle := (20, 0) (30,1) (40,0);
-	TERM long := (30, 0) (45, 1);
+    TERM notEnough := (0, 0) (lengthByRunTime_value_positive_one, 0);
+	TERM userExpected := (lengthByRunTime_value_positive_one, 0) (lengthByRunTime_value_positive_two,1) (lengthByRunTime_value_positive_three,0);
+	TERM tooMuch := (lengthByRunTime_value_positive_three, 0) (10000, 0);
 END_FUZZIFY
 
 DEFUZZIFY score
@@ -40,11 +52,15 @@ END_DEFUZZIFY
 RULEBLOCK No1
 	AND : MIN;
 	ACT : MIN;
-
 	ACCU : MAX;
-		RULE 1 : IF lengthByRunTime IS short OR freeTimeBySeasons IS fewSeasons OR newestByRelease IS old THEN score IS weak;
-		RULE 2 : IF lengthByRunTime IS middle OR freeTimeBySeasons IS middlingSeasons OR newestByRelease IS middle THEN score IS fair;
-		RULE 3 : IF lengthByRunTime IS long OR freeTimeBySeasons IS manySeasons OR newestByRelease IS new THEN score IS good;
+
+		RULE 1 : IF lengthByRunTime IS userExpected AND freeTimeBySeasons IS userExpected AND newestByRelease IS userExpected THEN score IS veryGood;
+
+        RULE 2 : IF lengthByRunTime IS userExpected OR freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR newestByRelease IS notEnough OR newestByRelease IS tooMuch THEN score IS good;
+        RULE 3 : IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR freeTimeBySeasons IS userExpected OR newestByRelease IS notEnough OR newestByRelease IS tooMuch THEN score IS good;
+        RULE 4 : IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR newestByRelease IS userExpected THEN score IS good;
+
+        RULE 5 : IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR newestByRelease IS notEnough OR newestByRelease IS tooMuch THEN score IS weak;
 END_RULEBLOCK
 
 END_FUNCTION_BLOCK
