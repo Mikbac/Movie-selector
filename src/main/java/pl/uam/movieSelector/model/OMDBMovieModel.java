@@ -12,6 +12,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 @Data
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)

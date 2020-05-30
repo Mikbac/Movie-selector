@@ -7,6 +7,10 @@ import pl.uam.movieSelector.model.OMDBMovieModel;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 public interface OMDBMovieRepository extends CrudRepository<OMDBMovieModel, String>, PagingAndSortingRepository<OMDBMovieModel, String> {
 
     ArrayList<OMDBMovieModel> findAll();

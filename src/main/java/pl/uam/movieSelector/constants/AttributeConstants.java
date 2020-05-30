@@ -1,5 +1,9 @@
 package pl.uam.movieSelector.constants;
 
+/**
+ * Created by MikBac on 22.05.2020
+ */
+
 public interface AttributeConstants {
 
     interface ModelAttributes {

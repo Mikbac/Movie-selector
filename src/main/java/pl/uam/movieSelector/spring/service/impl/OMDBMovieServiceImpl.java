@@ -9,6 +9,10 @@ import pl.uam.movieSelector.spring.service.OMDBMovieService;
 
 import javax.annotation.Resource;
 
+/**
+ * Created by MikBac on 25.05.2020
+ */
+
 @Service
 public class OMDBMovieServiceImpl implements OMDBMovieService {
 

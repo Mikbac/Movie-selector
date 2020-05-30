@@ -18,6 +18,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Created by MikBac on 22.05.2020
+ */
+
 @Getter
 @Setter
 @Builder

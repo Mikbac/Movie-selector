@@ -7,6 +7,10 @@ import pl.uam.movieSelector.spring.repository.FuzzyLogicRepository;
 
 import static pl.uam.movieSelector.constants.FuzzyLogicConstants.Files.fclFile;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 @Repository
 public class FuzzyLogicRepositoryImpl implements FuzzyLogicRepository {
 

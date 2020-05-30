@@ -7,6 +7,10 @@ import pl.uam.movieSelector.model.MovieModel;
 
 import java.util.ArrayList;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 @Repository
 public interface MovieRepository extends CrudRepository<MovieModel, Integer>, PagingAndSortingRepository<MovieModel, Integer> {
 

@@ -23,6 +23,10 @@ import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.po
 import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.positiveThree;
 import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.positiveTwo;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 @Log4j2
 @Service
 public class FuzzyLogicServiceImpl implements FuzzyLogicService {

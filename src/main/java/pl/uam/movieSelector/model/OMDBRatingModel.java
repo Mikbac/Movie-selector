@@ -5,6 +5,10 @@ import lombok.Data;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 @Data
 @Embeddable
 public class OMDBRatingModel {

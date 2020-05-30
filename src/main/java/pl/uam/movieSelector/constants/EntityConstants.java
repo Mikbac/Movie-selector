@@ -1,5 +1,9 @@
 package pl.uam.movieSelector.constants;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 public interface EntityConstants {
 
     interface Model {

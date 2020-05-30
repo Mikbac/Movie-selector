@@ -12,6 +12,10 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Created by MikBac on 22.05.2020
+ */
+
 @Service
 public class MainPageFacadeImpl implements MainPageFacade {
 

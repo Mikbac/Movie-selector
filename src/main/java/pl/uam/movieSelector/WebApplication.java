@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 @Log4j2
 @SpringBootApplication(scanBasePackages = {"pl.uam.movieSelector.spring"})
 @EntityScan(basePackages = {"pl.uam.movieSelector.model"})

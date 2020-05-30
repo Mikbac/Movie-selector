@@ -8,6 +8,10 @@ import pl.uam.movieSelector.spring.service.QuestionService;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 
+/**
+ * Created by MikBac on 22.05.2020
+ */
+
 @Service
 public class QuestionServiceImpl implements QuestionService {
 

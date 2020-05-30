@@ -8,6 +8,10 @@ import lombok.Setter;
 import pl.uam.movieSelector.data.Data;
 import pl.uam.movieSelector.data.enums.AnswerEnum;
 
+/**
+ * Created by MikBac on 22.05.2020
+ */
+
 @Builder
 @Getter
 @Setter

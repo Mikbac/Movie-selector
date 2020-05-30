@@ -1,3 +1,6 @@
+--
+-- Created by MikBac on 21.05.2020
+--
 INSERT INTO Movie(pk, id, name) VALUES (default, 'tt5180504', 'The Witcher');
 INSERT INTO Movie(pk, id, name) VALUES (default, 'tt0138704', 'Pi');
 INSERT INTO Movie(pk, id, name) VALUES (default, 'tt0120737', 'The Lord of the Rings: The Fellowship of the Ring');

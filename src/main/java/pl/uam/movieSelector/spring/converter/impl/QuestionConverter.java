@@ -5,6 +5,10 @@ import pl.uam.movieSelector.data.impl.UserQuestionData;
 import pl.uam.movieSelector.model.QuestionModel;
 import pl.uam.movieSelector.spring.converter.Converter;
 
+/**
+ * Created by MikBac on 22.05.2020
+ */
+
 @Service
 public class QuestionConverter implements Converter<UserQuestionData, QuestionModel> {
 

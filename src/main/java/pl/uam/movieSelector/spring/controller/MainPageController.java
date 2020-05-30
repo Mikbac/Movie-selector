@@ -16,6 +16,10 @@ import javax.annotation.Resource;
 import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.QUESTIONS_LIST;
 import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.THE_BEST_MOVIES;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 @Controller
 @RequestMapping(Mapping.ROOT)
 public class MainPageController {

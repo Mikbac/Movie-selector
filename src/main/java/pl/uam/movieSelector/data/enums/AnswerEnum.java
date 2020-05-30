@@ -1,5 +1,9 @@
 package pl.uam.movieSelector.data.enums;
 
+/**
+ * Created by MikBac on 22.05.2020
+ */
+
 public enum AnswerEnum {
     DEGREE_ONE,
     DEGREE_TWO,

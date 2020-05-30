@@ -8,6 +8,10 @@ import pl.uam.movieSelector.spring.service.OMDBMovieService;
 
 import javax.annotation.Resource;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 @Log4j2
 @Configuration
 public class PostConstructConfiguration {

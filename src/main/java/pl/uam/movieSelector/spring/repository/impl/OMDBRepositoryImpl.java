@@ -13,6 +13,10 @@ import java.util.Optional;
 import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.MOVIE_ID;
 import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.MOVIE_TITLE;
 
+/**
+ * Created by MikBac on 21.05.2020
+ */
+
 @Log4j2
 @Repository
 public class OMDBRepositoryImpl implements OMDBRepository {
