@@ -1,5 +1,6 @@
 package pl.uam.movieSelector.spring.service;
 
+import pl.uam.movieSelector.data.impl.MovieData;
 import pl.uam.movieSelector.data.impl.UserQuestionData;
 
 import java.util.ArrayList;
@@ -10,6 +11,6 @@ import java.util.ArrayList;
 
 public interface FuzzyLogicService {
 
-    ArrayList<String> predictUserAnswers(ArrayList<UserQuestionData> userQuestions);
+    ArrayList<MovieData> predictUserAnswers(final ArrayList<UserQuestionData> userQuestions, final int nTopMovies);
 
 }

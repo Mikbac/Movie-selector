@@ -1,0 +1,25 @@
+<!-- Created by MikBac on 24.05.2020-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="movies-table">
+    <div th:if="${theBestMovies != null}">
+        <h3 th:text="#{main.page.result.info.text}"></h3>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col" th:text="#{main.page.result.table.position.text}"></th>
+                <th scope="col" th:text="#{main.page.result.table.movie.name.text}"></th>
+                <th scope="col" th:text="#{main.page.result.table.movie.score.text}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="movie, iter: *{theBestMovies}">
+                <th scope="row" th:text="${iter.count}"></th>
+                <td th:text="${movie.name}"></td>
+                <td th:text="${movie.score}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</th:block>
+</html>

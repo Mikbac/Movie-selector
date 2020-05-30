@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="menu-form">
-    <form action="#" th:action="@{'/predict'}" method="POST" th:object="${questionsList}">
+    <form action="#" th:action="@{'/predict/20'}" method="POST" th:object="${questionsList}">
         <fieldset>
             <table>
                 <tbody>
@@ -15,7 +15,7 @@
                                th:value="${question.description}"/>
                     </td>
                     <h4 th:text="${question.description}"></h4>
-                    <select th:name="|questions[${itemStat.index}].userAnswer|">
+                    <select class="custom-select" th:name="|questions[${itemStat.index}].userAnswer|">
                         <option th:value="${T(pl.uam.movieSelector.data.enums.AnswerEnum).DEGREE_ONE}"
                                 th:text="#{main.page.answer.option.degree.one.text}"
                                 th:selected="${question.userAnswer == T(pl.uam.movieSelector.data.enums.AnswerEnum).DEGREE_ONE}"></option>

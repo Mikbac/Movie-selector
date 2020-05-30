@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.uam.movieSelector.constants.WebConstants.Mapping;
@@ -34,10 +35,10 @@ public class MainPageController {
         return Views.MAIN_PAGE;
     }
 
-    @PostMapping("/predict")
-    public String getMovie(@ModelAttribute final QuestionsData questionsList, final Model model) {
+    @PostMapping("/predict/{nTopMovies}")
+    public String getMovie(@ModelAttribute final QuestionsData questionsList, @PathVariable final int nTopMovies, final Model model) {
         model.addAttribute(QUESTIONS_LIST, questionsList);
-        model.addAttribute(THE_BEST_MOVIES, mainPageFacade.predictMovie(questionsList.getQuestions()));
+        model.addAttribute(THE_BEST_MOVIES, mainPageFacade.predictMovie(questionsList.getQuestions(), nTopMovies));
 
         return Views.MAIN_PAGE;
     }

@@ -23,11 +23,13 @@ public class OMDBRepositoryImpl implements OMDBRepository {
 
     @Override
     public Optional<OMDBMovieModel> getMovieByTitle(final String title) {
+        log.info("Get movie: {} from IMDB by title", () -> title);
         return getMovie(MOVIE_TITLE + title);
     }
 
     @Override
     public Optional<OMDBMovieModel> getMovieById(final String id) {
+        log.info("Get movie: {} from IMDB by id", () -> id);
         return getMovie(MOVIE_ID + id);
     }
 

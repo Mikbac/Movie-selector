@@ -3,6 +3,7 @@ package pl.uam.movieSelector.spring.service.impl;
 import lombok.extern.log4j.Log4j2;
 import net.sourceforge.jFuzzyLogic.FIS;
 import org.springframework.stereotype.Service;
+import pl.uam.movieSelector.data.impl.MovieData;
 import pl.uam.movieSelector.data.impl.UserQuestionData;
 import pl.uam.movieSelector.exception.InvalidMovieException;
 import pl.uam.movieSelector.exception.InvalidQuestionException;
@@ -44,11 +45,10 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
     private QuestionRepository questionRepository;
 
     @Override
-    public synchronized ArrayList<String> predictUserAnswers(ArrayList<UserQuestionData> userQuestions) {
+    public synchronized ArrayList<MovieData> predictUserAnswers(final ArrayList<UserQuestionData> userQuestions, final int nTopMovies) {
         setRealUserAnswerVariables(userQuestions);
         predictAllMovies(userQuestions);
-        return getNMoviesWithTheBestScore(3);
-
+        return getNMoviesWithTheBestScore(nTopMovies);
     }
 
     private void predictAllMovies(final ArrayList<UserQuestionData> userQuestions) {
@@ -72,23 +72,58 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
                                     .getTotalSeasons()));
                         } catch (Exception e) {
-                            fis.setVariable(question.getVariableName(), 0);
+                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
                         }
                         break;
                     case RUN_TIME:
                         fis.setVariable(question.getVariableName(), Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
                                 .orElseThrow(() -> new InvalidMovieException(movie.getId()))
                                 .getRuntime().split("\\s+")[0]));
-
+                        break;
+                    case IMDB_VOTES:
+                        try {
+                            fis.setVariable(question.getVariableName(), Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
+                                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                                    .getImdbVotes().replaceAll(",", "")));
+                        } catch (Exception e) {
+                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+                        }
+                        break;
+                    case METASCORE:
+                        try {
+                            fis.setVariable(question.getVariableName(), Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
+                                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                                    .getMetascore()));
+                        } catch (Exception e) {
+                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+                        }
+                        break;
+                    case QUANTITY_LANGUAGES:
+                        try {
+                            fis.setVariable(question.getVariableName(), omdbMovieRepository.findByImdbID(movie.getId())
+                                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                                    .getLanguage().split(",").length);
+                        } catch (Exception e) {
+                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+                        }
+                        break;
+                    case QUANTITY_COUNTRIES:
+                        try {
+                            fis.setVariable(question.getVariableName(), omdbMovieRepository.findByImdbID(movie.getId())
+                                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                                    .getCountry().split(",").length);
+                        } catch (Exception e) {
+                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+                        }
                         break;
                 }
-                fis.setVariable(question.getVariableName() + positiveOne, userQuestion.getRealUserAnswerValue() - question.getGoodValueRange());
+                fis.setVariable(question.getVariableName() + positiveOne, userQuestion.getRealUserAnswerValue() - userQuestion.getRealUserAnswerValue());
                 fis.setVariable(question.getVariableName() + positiveTwo, userQuestion.getRealUserAnswerValue());
-                fis.setVariable(question.getVariableName() + positiveThree, userQuestion.getRealUserAnswerValue() + question.getGoodValueRange());
+                fis.setVariable(question.getVariableName() + positiveThree, userQuestion.getRealUserAnswerValue() + userQuestion.getRealUserAnswerValue());
             }
             fis.evaluate();
             double movieScore = getScore(fis);
-            log.info("Predict {} ({}) - score: {}", movie::getName, movie::getId, () -> movieScore);
+            log.info("Predict movie: {} ({}) - score: {}", movie::getName, movie::getId, () -> movieScore);
             movie.setScore(movieScore);
             movieRepository.save(movie);
         }
@@ -124,7 +159,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         }
     }
 
-    private QuestionModel getQuestionByUserQuestions(UserQuestionData userQuestion) {
+    private QuestionModel getQuestionByUserQuestions(final UserQuestionData userQuestion) {
         return questionRepository.findAll()
                 .stream()
                 .filter(q -> userQuestion.getPk().equals(q.getPk()))
@@ -137,14 +172,14 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         return fis.getVariable("score").getValue();
     }
 
-    private ArrayList<String> getNMoviesWithTheBestScore(final int n) {
+    private ArrayList<MovieData> getNMoviesWithTheBestScore(final int n) {
 
-        ArrayList<String> bestMovies = new ArrayList<>();
+        ArrayList<MovieData> bestMovies = new ArrayList<>();
         ArrayList<MovieModel> movies = movieRepository.findAll();
         movies.sort(Comparator.comparing(MovieModel::getScore));
         Collections.reverse(movies);
         for (int i = 0; i < n; i++) {
-            bestMovies.add(movies.get(i).getName());
+            bestMovies.add(new MovieData(movies.get(i).getName(), movies.get(i).getScore()));
         }
 
         return bestMovies;

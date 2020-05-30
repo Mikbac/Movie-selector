@@ -7,5 +7,9 @@ package pl.uam.movieSelector.model.enums;
 public enum BaseVariableEnum {
     RELEASED,
     TOTAL_SEASONS,
-    RUN_TIME
+    RUN_TIME,
+    IMDB_VOTES,
+    METASCORE,
+    QUANTITY_LANGUAGES,
+    QUANTITY_COUNTRIES
 }

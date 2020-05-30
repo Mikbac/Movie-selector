@@ -18,11 +18,8 @@
                 <div class="col-12">
                     <th:block th:include="components/classification :: menu-form"/>
                 </div>
-                <div th:if="${theBestMovies != null}" class="col-12">
-                    <h3 th:text="#{main.page.result.info.text}"></h3>
-                    <div th:each="movie, iter: *{theBestMovies}">
-                        <h3 th:text="${iter.count} + '. ' + ${movie}"></h3>
-                    </div>
+                <div class="col-12">
+                    <th:block th:include="components/result :: movies-table"/>
                 </div>
             </div>
         </div>

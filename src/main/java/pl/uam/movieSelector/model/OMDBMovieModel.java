@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,12 +48,16 @@ public class OMDBMovieModel implements Serializable {
     private String director;
 
     @JsonProperty("Writer")
+    @Lob
+    @Column(length = 1000)
     private String writer;
 
     @JsonProperty("Actors")
     private String actors;
 
     @JsonProperty("Plot")
+    @Lob
+    @Column(length = 1000)
     private String plot;
 
     @JsonProperty("Language")

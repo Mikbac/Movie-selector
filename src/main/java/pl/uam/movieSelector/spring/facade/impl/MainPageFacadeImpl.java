@@ -1,6 +1,7 @@
 package pl.uam.movieSelector.spring.facade.impl;
 
 import org.springframework.stereotype.Service;
+import pl.uam.movieSelector.data.impl.MovieData;
 import pl.uam.movieSelector.data.impl.UserQuestionData;
 import pl.uam.movieSelector.model.QuestionModel;
 import pl.uam.movieSelector.spring.converter.Converter;
@@ -36,8 +37,8 @@ public class MainPageFacadeImpl implements MainPageFacade {
     }
 
     @Override
-    public ArrayList<String> predictMovie(final ArrayList<UserQuestionData> userQuestions) {
-        return fuzzyLogicService.predictUserAnswers(userQuestions);
+    public ArrayList<MovieData> predictMovie(final ArrayList<UserQuestionData> userQuestions, final int nTopMovies) {
+        return fuzzyLogicService.predictUserAnswers(userQuestions, nTopMovies);
     }
 
 }
