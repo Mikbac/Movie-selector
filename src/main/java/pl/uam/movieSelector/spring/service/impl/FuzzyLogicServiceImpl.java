@@ -61,60 +61,25 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                 question = getQuestionByUserQuestions(userQuestion);
                 switch (question.getBaseVariable()) {
                     case RELEASED:
-                        String date = omdbMovieRepository.findByImdbID(movie.getId())
-                                .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                                .getReleased();
-                        fis.setVariable(question.getVariableName(), Integer.parseInt(date.substring(date.length() - 4)));
+                        setFisVariableReleased(fis, question, movie, userQuestion);
                         break;
                     case TOTAL_SEASONS:
-                        try {
-                            fis.setVariable(question.getVariableName(), Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
-                                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                                    .getTotalSeasons()));
-                        } catch (Exception e) {
-                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
-                        }
+                        setFisVariableTotalSeasons(fis, question, movie, userQuestion);
                         break;
                     case RUN_TIME:
-                        fis.setVariable(question.getVariableName(), Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
-                                .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                                .getRuntime().split("\\s+")[0]));
+                        setFisVariableRunTime(fis, question, movie, userQuestion);
                         break;
                     case IMDB_VOTES:
-                        try {
-                            fis.setVariable(question.getVariableName(), Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
-                                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                                    .getImdbVotes().replaceAll(",", "")));
-                        } catch (Exception e) {
-                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
-                        }
+                        setFisVariableIMDBVotes(fis, question, movie, userQuestion);
                         break;
                     case METASCORE:
-                        try {
-                            fis.setVariable(question.getVariableName(), Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
-                                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                                    .getMetascore()));
-                        } catch (Exception e) {
-                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
-                        }
+                        setFisVariableMetascore(fis, question, movie, userQuestion);
                         break;
                     case QUANTITY_LANGUAGES:
-                        try {
-                            fis.setVariable(question.getVariableName(), omdbMovieRepository.findByImdbID(movie.getId())
-                                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                                    .getLanguage().split(",").length);
-                        } catch (Exception e) {
-                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
-                        }
+                        setFisVariableQuantityLanguages(fis, question, movie, userQuestion);
                         break;
                     case QUANTITY_COUNTRIES:
-                        try {
-                            fis.setVariable(question.getVariableName(), omdbMovieRepository.findByImdbID(movie.getId())
-                                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                                    .getCountry().split(",").length);
-                        } catch (Exception e) {
-                            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
-                        }
+                        setFisVariableQuantityCountries(fis, question, movie, userQuestion);
                         break;
                 }
                 fis.setVariable(question.getVariableName() + positiveOne, userQuestion.getRealUserAnswerValue() - userQuestion.getRealUserAnswerValue());
@@ -128,6 +93,73 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
             movieRepository.save(movie);
         }
 
+    }
+
+    private void setFisVariableReleased(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+        String date = omdbMovieRepository.findByImdbID(movie.getId())
+                .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                .getReleased();
+        fis.setVariable(question.getVariableName(), Integer.parseInt(date.substring(date.length() - 4)));
+    }
+
+    private void setFisVariableTotalSeasons(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+        try {
+            fis.setVariable(question.getVariableName(), Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
+                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                    .getTotalSeasons()));
+        } catch (Exception e) {
+            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+        }
+    }
+
+    private void setFisVariableRunTime(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+        try {
+            fis.setVariable(question.getVariableName(), Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
+                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                    .getRuntime().split("\\s+")[0]));
+        } catch (Exception e) {
+            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+        }
+    }
+
+    private void setFisVariableIMDBVotes(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+        try {
+            fis.setVariable(question.getVariableName(), Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
+                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                    .getImdbVotes().replaceAll(",", "")));
+        } catch (Exception e) {
+            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+        }
+    }
+
+    private void setFisVariableMetascore(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+        try {
+            fis.setVariable(question.getVariableName(), Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
+                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                    .getMetascore()));
+        } catch (Exception e) {
+            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+        }
+    }
+
+    private void setFisVariableQuantityLanguages(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+        try {
+            fis.setVariable(question.getVariableName(), omdbMovieRepository.findByImdbID(movie.getId())
+                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                    .getLanguage().split(",").length);
+        } catch (Exception e) {
+            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+        }
+    }
+
+    private void setFisVariableQuantityCountries(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+        try {
+            fis.setVariable(question.getVariableName(), omdbMovieRepository.findByImdbID(movie.getId())
+                    .orElseThrow(() -> new InvalidMovieException(movie.getId()))
+                    .getCountry().split(",").length);
+        } catch (Exception e) {
+            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+        }
     }
 
     private void setRealUserAnswerVariables(final ArrayList<UserQuestionData> userQuestions) {

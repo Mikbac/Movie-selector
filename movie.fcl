@@ -215,7 +215,6 @@ RULEBLOCK No1
 
     RULE 73 : IF lengthByRunTime IS userExpected AND freeTimeBySeasons IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
-
     RULE 74 : IF lengthByRunTime IS userExpected AND newestByRelease IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected THEN score IS t_7;
     RULE 75 : IF lengthByRunTime IS userExpected AND newestByRelease IS userExpected AND popularByIMDBVotes IS userExpected AND languagesByQuantityOfLanguages IS userExpected THEN score IS t_7;
     RULE 76 : IF lengthByRunTime IS userExpected AND newestByRelease IS userExpected AND popularByIMDBVotes IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
@@ -225,14 +224,12 @@ RULEBLOCK No1
 
     RULE 79 : IF lengthByRunTime IS userExpected AND newestByRelease IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
-
     RULE 80 : IF lengthByRunTime IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected THEN score IS t_7;
     RULE 81 : IF lengthByRunTime IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
     RULE 82 : IF lengthByRunTime IS userExpected AND popularByIMDBVotes IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
     RULE 83 : IF lengthByRunTime IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
-
 
     // ---- t_4
     // ---- freeTimeBySeasons
@@ -244,7 +241,6 @@ RULEBLOCK No1
     RULE 88 : IF freeTimeBySeasons IS userExpected AND newestByRelease IS userExpected AND scoreByMetascore IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
     RULE 89 : IF freeTimeBySeasons IS userExpected AND newestByRelease IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
-
 
     RULE 90 : IF freeTimeBySeasons IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected THEN score IS t_7;
     RULE 91 : IF freeTimeBySeasons IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
@@ -276,14 +272,12 @@ RULEBLOCK No1
 
     RULE 104 : IF lengthByRunTime IS userExpected AND freeTimeBySeasons IS userExpected AND newestByRelease IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
-
     RULE 105 : IF lengthByRunTime IS userExpected AND freeTimeBySeasons IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected THEN score IS t_7;
     RULE 106 : IF lengthByRunTime IS userExpected AND freeTimeBySeasons IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
     RULE 107 : IF lengthByRunTime IS userExpected AND freeTimeBySeasons IS userExpected AND popularByIMDBVotes IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
     RULE 108 : IF lengthByRunTime IS userExpected AND freeTimeBySeasons IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
-
 
     RULE 109 : IF lengthByRunTime IS userExpected AND newestByRelease IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected THEN score IS t_7;
     RULE 110 : IF lengthByRunTime IS userExpected AND newestByRelease IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
@@ -292,9 +286,7 @@ RULEBLOCK No1
 
     RULE 112 : IF lengthByRunTime IS userExpected AND newestByRelease IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
-
     RULE 113 : IF lengthByRunTime IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
-
 
     RULE 114 : IF freeTimeBySeasons IS userExpected AND newestByRelease IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected THEN score IS t_7;
     RULE 115 : IF freeTimeBySeasons IS userExpected AND newestByRelease IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
@@ -302,7 +294,6 @@ RULEBLOCK No1
     RULE 116 : IF freeTimeBySeasons IS userExpected AND newestByRelease IS userExpected AND popularByIMDBVotes IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
     RULE 117 : IF freeTimeBySeasons IS userExpected AND newestByRelease IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
-
 
     RULE 118 : IF freeTimeBySeasons IS userExpected AND popularByIMDBVotes IS userExpected AND scoreByMetascore IS userExpected AND languagesByQuantityOfLanguages IS userExpected AND globalizationByQuantityOfCountries IS userExpected THEN score IS t_7;
 
