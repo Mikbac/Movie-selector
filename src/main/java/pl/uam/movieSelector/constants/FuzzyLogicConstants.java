@@ -7,7 +7,8 @@ package pl.uam.movieSelector.constants;
 public interface FuzzyLogicConstants {
 
     interface Files {
-        String fclFile = "movie.fcl";
+        String root = "./fuzzyLogicControllers";
+        String fclFile = root + "/movie.fcl";
     }
 
     interface ValuePostfix {
