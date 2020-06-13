@@ -16,4 +16,6 @@ public interface OMDBMovieRepository extends CrudRepository<OMDBMovieModel, Stri
     ArrayList<OMDBMovieModel> findAll();
 
     Optional<OMDBMovieModel> findByImdbID(String imdbID);
+
+    long count();
 }

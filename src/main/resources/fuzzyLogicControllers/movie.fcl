@@ -1,0 +1,450 @@
+FUNCTION_BLOCK movie
+
+VAR_INPUT
+    freeTimeBySeasons : REAL;
+    freeTimeBySeasons_value_positive_one : REAL;
+    freeTimeBySeasons_value_positive_two : REAL;
+    freeTimeBySeasons_value_positive_three : REAL;
+    freeTimeBySeasons_value_positive_four : REAL;
+    freeTimeBySeasons_value_positive_five : REAL;
+    freeTimeBySeasons_value_positive_six : REAL;
+    freeTimeBySeasons_value_positive_seven : REAL;
+
+    newestByRelease : REAL;
+    newestByRelease_value_positive_one : REAL;
+    newestByRelease_value_positive_two : REAL;
+    newestByRelease_value_positive_three : REAL;
+    newestByRelease_value_positive_four : REAL;
+    newestByRelease_value_positive_five : REAL;
+    newestByRelease_value_positive_six : REAL;
+    newestByRelease_value_positive_seven : REAL;
+
+    lengthByRunTime : REAL;
+    lengthByRunTime_value_positive_one : REAL;
+    lengthByRunTime_value_positive_two : REAL;
+    lengthByRunTime_value_positive_three : REAL;
+    lengthByRunTime_value_positive_four : REAL;
+    lengthByRunTime_value_positive_five : REAL;
+    lengthByRunTime_value_positive_six : REAL;
+    lengthByRunTime_value_positive_seven : REAL;
+
+    popularByIMDBVotes : REAL;
+    popularByIMDBVotes_value_positive_one : REAL;
+    popularByIMDBVotes_value_positive_two : REAL;
+    popularByIMDBVotes_value_positive_three : REAL;
+    popularByIMDBVotes_value_positive_four : REAL;
+    popularByIMDBVotes_value_positive_five : REAL;
+    popularByIMDBVotes_value_positive_six : REAL;
+    popularByIMDBVotes_value_positive_seven : REAL;
+
+    scoreByMetascore : REAL;
+    scoreByMetascore_value_positive_one : REAL;
+    scoreByMetascore_value_positive_two : REAL;
+    scoreByMetascore_value_positive_three : REAL;
+    scoreByMetascore_value_positive_four : REAL;
+    scoreByMetascore_value_positive_five : REAL;
+    scoreByMetascore_value_positive_six : REAL;
+    scoreByMetascore_value_positive_seven : REAL;
+
+    languagesByQuantityOfLanguages : REAL;
+    languagesByQuantityOfLanguages_value_positive_one : REAL;
+    languagesByQuantityOfLanguages_value_positive_two : REAL;
+    languagesByQuantityOfLanguages_value_positive_three : REAL;
+    languagesByQuantityOfLanguages_value_positive_four : REAL;
+    languagesByQuantityOfLanguages_value_positive_five : REAL;
+    languagesByQuantityOfLanguages_value_positive_six : REAL;
+    languagesByQuantityOfLanguages_value_positive_seven : REAL;
+
+    globalizationByQuantityOfCountries : REAL;
+    globalizationByQuantityOfCountries_value_positive_one : REAL;
+    globalizationByQuantityOfCountries_value_positive_two : REAL;
+    globalizationByQuantityOfCountries_value_positive_three : REAL;
+    globalizationByQuantityOfCountries_value_positive_four : REAL;
+    globalizationByQuantityOfCountries_value_positive_five : REAL;
+    globalizationByQuantityOfCountries_value_positive_six : REAL;
+    globalizationByQuantityOfCountries_value_positive_seven : REAL;
+
+END_VAR
+
+VAR_OUTPUT
+	score : REAL;
+END_VAR
+
+FUZZIFY freeTimeBySeasons
+    TERM notEnough := (0, 1) (freeTimeBySeasons_value_positive_one, 1) (freeTimeBySeasons_value_positive_three, 0);
+	TERM userExpected := (freeTimeBySeasons_value_positive_two, 0) (freeTimeBySeasons_value_positive_four,1) (freeTimeBySeasons_value_positive_six,0);
+	TERM tooMuch := (freeTimeBySeasons_value_positive_five, 0) (freeTimeBySeasons_value_positive_seven, 1) (1000000000, 1);
+END_FUZZIFY
+
+FUZZIFY newestByRelease
+    TERM notEnough := (0, 1) (newestByRelease_value_positive_one, 1) (newestByRelease_value_positive_three, 0);
+	TERM userExpected := (newestByRelease_value_positive_two, 0) (newestByRelease_value_positive_four,1) (newestByRelease_value_positive_six,0);
+	TERM tooMuch := (newestByRelease_value_positive_five, 0) (newestByRelease_value_positive_seven, 1) (1000000000, 1);
+END_FUZZIFY
+
+FUZZIFY lengthByRunTime
+    TERM notEnough := (0, 1) (lengthByRunTime_value_positive_one, 1) (lengthByRunTime_value_positive_three, 0);
+	TERM userExpected := (lengthByRunTime_value_positive_two, 0) (lengthByRunTime_value_positive_four,1) (lengthByRunTime_value_positive_six,0);
+	TERM tooMuch := (lengthByRunTime_value_positive_five, 0) (lengthByRunTime_value_positive_seven, 1) (1000000000, 1);
+END_FUZZIFY
+
+FUZZIFY popularByIMDBVotes
+    TERM notEnough := (0, 1) (popularByIMDBVotes_value_positive_one, 1) (popularByIMDBVotes_value_positive_three, 0);
+	TERM userExpected := (popularByIMDBVotes_value_positive_two, 0) (popularByIMDBVotes_value_positive_four,1) (popularByIMDBVotes_value_positive_six,0);
+	TERM tooMuch := (popularByIMDBVotes_value_positive_five, 0) (popularByIMDBVotes_value_positive_seven, 1) (1000000000, 1);
+END_FUZZIFY
+
+FUZZIFY scoreByMetascore
+    TERM notEnough := (0, 1) (scoreByMetascore_value_positive_one, 1) (scoreByMetascore_value_positive_three, 0);
+	TERM userExpected := (scoreByMetascore_value_positive_two, 0) (scoreByMetascore_value_positive_four,1) (scoreByMetascore_value_positive_six,0);
+	TERM tooMuch := (scoreByMetascore_value_positive_five, 0) (scoreByMetascore_value_positive_seven, 1) (1000000000, 1);
+END_FUZZIFY
+
+FUZZIFY languagesByQuantityOfLanguages
+    TERM notEnough := (0, 1) (languagesByQuantityOfLanguages_value_positive_one, 1) (languagesByQuantityOfLanguages_value_positive_three, 0);
+	TERM userExpected := (languagesByQuantityOfLanguages_value_positive_two, 0) (languagesByQuantityOfLanguages_value_positive_four,1) (languagesByQuantityOfLanguages_value_positive_six,0);
+	TERM tooMuch := (languagesByQuantityOfLanguages_value_positive_five, 0) (languagesByQuantityOfLanguages_value_positive_seven, 1) (1000000000, 1);
+END_FUZZIFY
+
+FUZZIFY globalizationByQuantityOfCountries
+    TERM notEnough := (0, 1) (globalizationByQuantityOfCountries_value_positive_one, 1) (globalizationByQuantityOfCountries_value_positive_three, 0);
+	TERM userExpected := (globalizationByQuantityOfCountries_value_positive_two, 0) (globalizationByQuantityOfCountries_value_positive_four,1) (globalizationByQuantityOfCountries_value_positive_six,0);
+	TERM tooMuch := (globalizationByQuantityOfCountries_value_positive_five, 0) (globalizationByQuantityOfCountries_value_positive_seven, 1) (1000000000, 1);
+END_FUZZIFY
+
+DEFUZZIFY score
+	TERM t_0 := (0,0) (6,1) (14,0);
+	TERM t_1 := (10,0) (18,1) (26,0);
+	TERM t_2 := (22,0) (30,1) (38,0);
+	TERM t_3 := (34,0) (42,1) (50, 0);
+	TERM t_4 := (46,0) (54,1) (62, 0);
+	TERM t_5 := (58,0) (66,1) (74, 0);
+	TERM t_6 := (70,0) (78,1) (86, 0);
+	TERM t_7 := (82,0) (92,1) (100, 0);
+	METHOD : COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACT : MIN;
+	ACCU : MAX;
+
+    // ---- t_0 ----
+    RULE 1: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch
+                THEN score IS t_0;
+
+    // ---- t_1 ----
+    RULE 2: IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch
+                THEN score IS t_1;
+
+    RULE 3: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch
+                THEN score IS t_1;
+
+    RULE 4: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch
+                THEN score IS t_1;
+
+    RULE 5: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch
+                THEN score IS t_1;
+
+    RULE 6: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch
+                THEN score IS t_1;
+
+    RULE 7: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch
+                THEN score IS t_1;
+
+    RULE 8: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_1;
+
+    // ---- t_2 ----
+    RULE 9: IF lengthByRunTime IS userExpected AND
+                   (freeTimeBySeasons IS userExpected OR
+                    newestByRelease IS userExpected OR
+                    popularByIMDBVotes IS userExpected OR
+                    scoreByMetascore IS userExpected OR
+                    languagesByQuantityOfLanguages IS userExpected OR
+                    globalizationByQuantityOfCountries IS userExpected)
+                AND
+                    (freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR
+                    newestByRelease IS notEnough OR newestByRelease IS tooMuch OR
+                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch OR
+                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch OR
+                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch OR
+                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+                THEN score IS t_2;
+
+    RULE 10: IF freeTimeBySeasons IS userExpected AND
+                    (lengthByRunTime IS userExpected OR
+                    newestByRelease IS userExpected OR
+                    popularByIMDBVotes IS userExpected OR
+                    scoreByMetascore IS userExpected OR
+                    languagesByQuantityOfLanguages IS userExpected OR
+                    globalizationByQuantityOfCountries IS userExpected)
+                 AND
+                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR
+                    newestByRelease IS notEnough OR newestByRelease IS tooMuch OR
+                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch OR
+                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch OR
+                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch OR
+                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+                THEN score IS t_2;
+
+    RULE 11: IF newestByRelease IS userExpected AND
+                    (lengthByRunTime IS userExpected OR
+                    freeTimeBySeasons IS userExpected OR
+                    popularByIMDBVotes IS userExpected OR
+                    scoreByMetascore IS userExpected OR
+                    languagesByQuantityOfLanguages IS userExpected OR
+                    globalizationByQuantityOfCountries IS userExpected)
+                 AND
+                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR
+                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR
+                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch OR
+                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch OR
+                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch OR
+                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+                THEN score IS t_2;
+
+    RULE 12: IF popularByIMDBVotes IS userExpected AND
+                    (lengthByRunTime IS userExpected OR
+                    freeTimeBySeasons IS userExpected OR
+                    newestByRelease IS userExpected OR
+                    scoreByMetascore IS userExpected OR
+                    languagesByQuantityOfLanguages IS userExpected OR
+                    globalizationByQuantityOfCountries IS userExpected)
+                 AND
+                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR
+                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR
+                    newestByRelease IS notEnough OR newestByRelease IS tooMuch OR
+                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch OR
+                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch OR
+                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+                THEN score IS t_2;
+
+    RULE 13: IF scoreByMetascore IS userExpected AND
+                    (lengthByRunTime IS userExpected OR
+                    freeTimeBySeasons IS userExpected OR
+                    newestByRelease IS userExpected OR
+                    popularByIMDBVotes IS userExpected OR
+                    languagesByQuantityOfLanguages IS userExpected OR
+                    globalizationByQuantityOfCountries IS userExpected)
+                 AND
+                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR
+                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR
+                    newestByRelease IS notEnough OR newestByRelease IS tooMuch OR
+                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch OR
+                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch OR
+                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+                THEN score IS t_2;
+
+    RULE 14: IF languagesByQuantityOfLanguages IS userExpected AND
+                    (lengthByRunTime IS userExpected OR
+                    freeTimeBySeasons IS userExpected OR
+                    newestByRelease IS userExpected OR
+                    popularByIMDBVotes IS userExpected OR
+                    scoreByMetascore IS userExpected OR
+                    globalizationByQuantityOfCountries IS userExpected)
+                 AND
+                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR
+                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR
+                    newestByRelease IS notEnough OR newestByRelease IS tooMuch OR
+                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch OR
+                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch OR
+                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+                THEN score IS t_2;
+
+    RULE 15: IF globalizationByQuantityOfCountries IS userExpected AND
+                    (lengthByRunTime IS userExpected OR
+                    freeTimeBySeasons IS userExpected OR
+                    newestByRelease IS userExpected OR
+                    popularByIMDBVotes IS userExpected OR
+                    scoreByMetascore IS userExpected OR
+                    languagesByQuantityOfLanguages IS userExpected)
+                 AND
+                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR
+                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR
+                    newestByRelease IS notEnough OR newestByRelease IS tooMuch OR
+                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch OR
+                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch OR
+                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch)
+                THEN score IS t_2;
+
+    // ---- t_3 ----
+        RULE 9: IF (lengthByRunTime IS userExpected OR
+                    freeTimeBySeasons IS userExpected OR
+                    newestByRelease IS userExpected OR
+                    popularByIMDBVotes IS userExpected OR
+                    scoreByMetascore IS userExpected OR
+                    languagesByQuantityOfLanguages IS userExpected OR
+                    globalizationByQuantityOfCountries IS userExpected)
+                AND
+                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                    newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+                THEN score IS t_3;
+
+    // ---- t_4 ----
+        RULE 9: IF (lengthByRunTime IS userExpected AND
+                    freeTimeBySeasons IS userExpected AND
+                    newestByRelease IS userExpected AND
+                    popularByIMDBVotes IS userExpected AND
+                    scoreByMetascore IS userExpected AND
+                    languagesByQuantityOfLanguages IS userExpected AND
+                    globalizationByQuantityOfCountries IS userExpected)
+                AND
+                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                    newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+                THEN score IS t_4;
+
+    // ---- t_5 ----
+        RULE 9: IF (lengthByRunTime IS userExpected AND
+                    freeTimeBySeasons IS userExpected AND
+                    newestByRelease IS userExpected AND
+                    popularByIMDBVotes IS userExpected AND
+                    scoreByMetascore IS userExpected AND
+                    languagesByQuantityOfLanguages IS userExpected AND
+                    globalizationByQuantityOfCountries IS userExpected)
+                AND
+                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR
+                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR
+                    newestByRelease IS notEnough OR newestByRelease IS tooMuch OR
+                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch OR
+                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch OR
+                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch OR
+                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+                THEN score IS t_5;
+
+    // ---- t_6 ----
+    RULE 14: IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS notEnough OR lengthByRunTime IS tooMuch
+                THEN score IS t_6;
+
+    RULE 14: IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS notEnough OR lengthByRunTime IS tooMuch AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+
+    RULE 14: IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS notEnough OR lengthByRunTime IS tooMuch AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+
+    RULE 14: IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS notEnough OR lengthByRunTime IS tooMuch AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+
+    RULE 14: IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS notEnough OR lengthByRunTime IS tooMuch AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+
+    RULE 14: IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS notEnough OR lengthByRunTime IS tooMuch AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+
+    RULE 14: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+
+    // ---- t_7 ----
+    RULE 127 : IF lengthByRunTime IS userExpected AND
+                    freeTimeBySeasons IS userExpected AND
+                    newestByRelease IS userExpected AND
+                    popularByIMDBVotes IS userExpected AND
+                    scoreByMetascore IS userExpected AND
+                    languagesByQuantityOfLanguages IS userExpected AND
+                    globalizationByQuantityOfCountries IS userExpected
+                    THEN score IS t_7;
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

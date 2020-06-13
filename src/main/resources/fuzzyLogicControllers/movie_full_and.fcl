@@ -1,0 +1,718 @@
+FUNCTION_BLOCK movie
+
+VAR_INPUT
+    freeTimeBySeasons : REAL;
+    freeTimeBySeasons_value_positive_one : REAL;
+    freeTimeBySeasons_value_positive_two : REAL;
+    freeTimeBySeasons_value_positive_three : REAL;
+    freeTimeBySeasons_value_positive_four : REAL;
+    freeTimeBySeasons_value_positive_five : REAL;
+    freeTimeBySeasons_value_positive_six : REAL;
+    freeTimeBySeasons_value_positive_seven : REAL;
+
+    newestByRelease : REAL;
+    newestByRelease_value_positive_one : REAL;
+    newestByRelease_value_positive_two : REAL;
+    newestByRelease_value_positive_three : REAL;
+    newestByRelease_value_positive_four : REAL;
+    newestByRelease_value_positive_five : REAL;
+    newestByRelease_value_positive_six : REAL;
+    newestByRelease_value_positive_seven : REAL;
+
+    lengthByRunTime : REAL;
+    lengthByRunTime_value_positive_one : REAL;
+    lengthByRunTime_value_positive_two : REAL;
+    lengthByRunTime_value_positive_three : REAL;
+    lengthByRunTime_value_positive_four : REAL;
+    lengthByRunTime_value_positive_five : REAL;
+    lengthByRunTime_value_positive_six : REAL;
+    lengthByRunTime_value_positive_seven : REAL;
+
+    popularByIMDBVotes : REAL;
+    popularByIMDBVotes_value_positive_one : REAL;
+    popularByIMDBVotes_value_positive_two : REAL;
+    popularByIMDBVotes_value_positive_three : REAL;
+    popularByIMDBVotes_value_positive_four : REAL;
+    popularByIMDBVotes_value_positive_five : REAL;
+    popularByIMDBVotes_value_positive_six : REAL;
+    popularByIMDBVotes_value_positive_seven : REAL;
+
+    scoreByMetascore : REAL;
+    scoreByMetascore_value_positive_one : REAL;
+    scoreByMetascore_value_positive_two : REAL;
+    scoreByMetascore_value_positive_three : REAL;
+    scoreByMetascore_value_positive_four : REAL;
+    scoreByMetascore_value_positive_five : REAL;
+    scoreByMetascore_value_positive_six : REAL;
+    scoreByMetascore_value_positive_seven : REAL;
+
+    languagesByQuantityOfLanguages : REAL;
+    languagesByQuantityOfLanguages_value_positive_one : REAL;
+    languagesByQuantityOfLanguages_value_positive_two : REAL;
+    languagesByQuantityOfLanguages_value_positive_three : REAL;
+    languagesByQuantityOfLanguages_value_positive_four : REAL;
+    languagesByQuantityOfLanguages_value_positive_five : REAL;
+    languagesByQuantityOfLanguages_value_positive_six : REAL;
+    languagesByQuantityOfLanguages_value_positive_seven : REAL;
+
+    globalizationByQuantityOfCountries : REAL;
+    globalizationByQuantityOfCountries_value_positive_one : REAL;
+    globalizationByQuantityOfCountries_value_positive_two : REAL;
+    globalizationByQuantityOfCountries_value_positive_three : REAL;
+    globalizationByQuantityOfCountries_value_positive_four : REAL;
+    globalizationByQuantityOfCountries_value_positive_five : REAL;
+    globalizationByQuantityOfCountries_value_positive_six : REAL;
+    globalizationByQuantityOfCountries_value_positive_seven : REAL;
+
+END_VAR
+
+VAR_OUTPUT
+	score : REAL;
+END_VAR
+
+FUZZIFY freeTimeBySeasons
+    TERM notEnough := (0, 0) (freeTimeBySeasons_value_positive_two, 0);
+	TERM userExpected := (freeTimeBySeasons_value_positive_two, 0) (freeTimeBySeasons_value_positive_four,1) (freeTimeBySeasons_value_positive_six,0);
+	TERM tooMuch := (freeTimeBySeasons_value_positive_six, 0) (1000000000, 0);
+END_FUZZIFY
+
+FUZZIFY newestByRelease
+    TERM notEnough := (0, 0) (newestByRelease_value_positive_two, 0);
+	TERM userExpected := (newestByRelease_value_positive_two, 0) (newestByRelease_value_positive_four,1) (newestByRelease_value_positive_six,0);
+	TERM tooMuch := (newestByRelease_value_positive_six, 0) (1000000000, 0);
+END_FUZZIFY
+
+FUZZIFY lengthByRunTime
+    TERM notEnough := (0, 0) (lengthByRunTime_value_positive_two, 0);
+	TERM userExpected := (lengthByRunTime_value_positive_two, 0) (lengthByRunTime_value_positive_four,1) (lengthByRunTime_value_positive_six,0);
+	TERM tooMuch := (lengthByRunTime_value_positive_six, 0) (1000000000, 0);
+END_FUZZIFY
+
+FUZZIFY popularByIMDBVotes
+    TERM notEnough := (0, 0) (popularByIMDBVotes_value_positive_two, 0);
+	TERM userExpected := (popularByIMDBVotes_value_positive_two, 0) (popularByIMDBVotes_value_positive_four,1) (popularByIMDBVotes_value_positive_six,0);
+	TERM tooMuch := (popularByIMDBVotes_value_positive_six, 0) (1000000000, 0);
+END_FUZZIFY
+
+FUZZIFY scoreByMetascore
+    TERM notEnough := (0, 0) (scoreByMetascore_value_positive_two, 0);
+	TERM userExpected := (scoreByMetascore_value_positive_two, 0) (scoreByMetascore_value_positive_four,1) (scoreByMetascore_value_positive_six,0);
+	TERM tooMuch := (scoreByMetascore_value_positive_six, 0) (1000000000, 0);
+END_FUZZIFY
+
+FUZZIFY languagesByQuantityOfLanguages
+    TERM notEnough := (0, 0) (languagesByQuantityOfLanguages_value_positive_two, 0);
+	TERM userExpected := (languagesByQuantityOfLanguages_value_positive_two, 0) (languagesByQuantityOfLanguages_value_positive_four,1) (languagesByQuantityOfLanguages_value_positive_six,0);
+	TERM tooMuch := (languagesByQuantityOfLanguages_value_positive_six, 0) (1000, 0);
+END_FUZZIFY
+
+FUZZIFY globalizationByQuantityOfCountries
+    TERM notEnough := (0, 0) (globalizationByQuantityOfCountries_value_positive_two, 0);
+	TERM userExpected := (globalizationByQuantityOfCountries_value_positive_two, 0) (globalizationByQuantityOfCountries_value_positive_four,1) (globalizationByQuantityOfCountries_value_positive_six,0);
+	TERM tooMuch := (globalizationByQuantityOfCountries_value_positive_six, 0) (1000, 0);
+END_FUZZIFY
+
+DEFUZZIFY score
+	TERM t_0 := (0,0) (6,1) (12,0);
+	TERM t_1 := (12,0) (18,1) (24,0);
+	TERM t_2 := (24,0) (30,1) (36,0);
+	TERM t_3 := (36,0) (42,1) (48, 0);
+	TERM t_4 := (48,0) (54,1) (60, 0);
+	TERM t_5 := (60,0) (66,1) (72, 0);
+	TERM t_6 := (72,0) (78,1) (84, 0);
+	TERM t_7 := (84,0) (92,1) (100, 0);
+	METHOD : COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACT : MIN;
+	ACCU : MAX;
+
+	// ---- t_1
+    RULE 1 : IF lengthByRunTime IS userExpected THEN score IS t_1;
+    RULE 2 : IF freeTimeBySeasons IS userExpected THEN score IS t_1;
+    RULE 3 : IF newestByRelease IS userExpected THEN score IS t_1;
+    RULE 4 : IF popularByIMDBVotes IS userExpected THEN score IS t_1;
+    RULE 5 : IF scoreByMetascore IS userExpected THEN score IS t_1;
+    RULE 6 : IF languagesByQuantityOfLanguages IS userExpected THEN score IS t_1;
+    RULE 7 : IF globalizationByQuantityOfCountries IS userExpected THEN score IS t_1;
+
+    // ---- t_2
+    RULE 8 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected
+                THEN score IS t_2;
+    RULE 9 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected
+                THEN score IS t_2;
+    RULE 10 : IF lengthByRunTime IS userExpected AND
+                popularByIMDBVotes IS userExpected
+                THEN score IS t_2;
+    RULE 11 : IF lengthByRunTime IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_2;
+    RULE 12 : IF lengthByRunTime IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_2;
+    RULE 13 : IF lengthByRunTime IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_2;
+    RULE 14 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected
+                THEN score IS t_2;
+    RULE 15 : IF freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected
+                THEN score IS t_2;
+    RULE 16 : IF freeTimeBySeasons IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_2;
+    RULE 17 : IF freeTimeBySeasons IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_2;
+    RULE 18 : IF freeTimeBySeasons IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_2;
+    RULE 19 : IF newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected
+                THEN score IS t_2;
+    RULE 20 : IF newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_2;
+    RULE 21 : IF newestByRelease IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_2;
+    RULE 22 : IF newestByRelease IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_2;
+    RULE 23 : IF popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_2;
+    RULE 24 : IF popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_2;
+    RULE 25 : IF popularByIMDBVotes IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_2;
+    RULE 26 : IF scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_2;
+    RULE 27 : IF popularByIMDBVotes IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_2;
+    RULE 28 : IF languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_2;
+
+    // ---- t_3
+    RULE 29 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected
+                THEN score IS t_3;
+    RULE 30 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected
+                THEN score IS t_3;
+    RULE 31 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_3;
+    RULE 32 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 33 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 34 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected
+                THEN score IS t_3;
+    RULE 35 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_3;
+    RULE 36 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 37 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 38 : IF lengthByRunTime IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_3;
+    RULE 39 : IF lengthByRunTime IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 40 : IF lengthByRunTime IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 41 : IF lengthByRunTime IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 42 : IF lengthByRunTime IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 43 : IF lengthByRunTime IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 44 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected
+                THEN score IS t_3;
+    RULE 45 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_3;
+    RULE 46 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 47 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 48 : IF freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_3;
+    RULE 49 : IF freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 50 : IF freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 51 : IF freeTimeBySeasons IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 52 : IF freeTimeBySeasons IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 53 : IF freeTimeBySeasons IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 54 : IF newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_3;
+    RULE 55 : IF newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 56 : IF newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 57 : IF newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 58 : IF newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 59 : IF newestByRelease IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 60 : IF popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_3;
+    RULE 61 : IF popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 62 : IF popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+    RULE 63 : IF scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_3;
+
+    // ---- t_4
+    // ---- freeTimeBySeasons
+    RULE 64 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected
+                THEN score IS t_4;
+    RULE 65 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_4;
+    RULE 66 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 67 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 68 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_4;
+    RULE 69 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 70 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 71 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 72 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 73 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 74 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_4;
+    RULE 75 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 76 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 77 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 78 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 79 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 80 : IF lengthByRunTime IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 81 : IF lengthByRunTime IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 82 : IF lengthByRunTime IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 83 : IF lengthByRunTime IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 84 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected
+                THEN score IS t_4;
+    RULE 85 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 86 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 87 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 88 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 89 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 90 : IF freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 91 : IF freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 92 : IF freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 93 : IF freeTimeBySeasons IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 94 : IF newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_4;
+    RULE 95 : IF newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 96 : IF newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 97 : IF newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+    RULE 98 : IF popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_4;
+
+    // ---- t_5
+    RULE 99 : IF lengthByRunTime IS userExpected
+                AND freeTimeBySeasons IS userExpected
+                AND newestByRelease IS userExpected
+                AND popularByIMDBVotes IS userExpected
+                AND scoreByMetascore IS userExpected
+                THEN score IS t_5;
+    RULE 100 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_5;
+    RULE 101 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 102 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_5;
+    RULE 103 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 104 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 105 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_5;
+    RULE 106 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 107 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 108 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 109 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_5;
+    RULE 110 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 111 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 112 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 113 : IF lengthByRunTime IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 114 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_5;
+    RULE 115 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 116 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 117 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 118 : IF freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+    RULE 119 : IF newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_5;
+
+    // ---- t_6
+    RULE 120 : IF freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+    RULE 121 : IF lengthByRunTime IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+    RULE 122 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+    RULE 123 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+    RULE 124 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_6;
+    RULE 125 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                globalizationByQuantityOfCountries IS
+                userExpected THEN score IS t_6;
+    RULE 126 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected
+                THEN score IS t_6;
+
+    // ---- t_7
+    RULE 127 : IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_7;
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

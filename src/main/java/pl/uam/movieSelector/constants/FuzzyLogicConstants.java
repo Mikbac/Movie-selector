@@ -6,15 +6,14 @@ package pl.uam.movieSelector.constants;
 
 public interface FuzzyLogicConstants {
 
-    interface Files {
-        String root = "./fuzzyLogicControllers";
-        String fclFile = root + "/movie.fcl";
-    }
-
     interface ValuePostfix {
-        String positiveOne = "_value_positive_one";
-        String positiveTwo = "_value_positive_two";
-        String positiveThree = "_value_positive_three";
+        String POSITIVE_ONE = "_value_positive_one";
+        String POSITIVE_TWO = "_value_positive_two";
+        String POSITIVE_THREE = "_value_positive_three";
+        String POSITIVE_FOUR = "_value_positive_four";
+        String POSITIVE_FIVE = "_value_positive_five";
+        String POSITIVE_SIX = "_value_positive_six";
+        String POSITIVE_SEVEN = "_value_positive_seven";
     }
 
 }

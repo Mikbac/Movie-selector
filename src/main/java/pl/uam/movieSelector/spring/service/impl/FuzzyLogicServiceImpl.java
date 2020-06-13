@@ -5,6 +5,7 @@ import net.sourceforge.jFuzzyLogic.FIS;
 import org.springframework.stereotype.Service;
 import pl.uam.movieSelector.data.impl.MovieData;
 import pl.uam.movieSelector.data.impl.UserQuestionData;
+import pl.uam.movieSelector.exception.InvalidDataQuantityException;
 import pl.uam.movieSelector.exception.InvalidMovieException;
 import pl.uam.movieSelector.exception.InvalidQuestionException;
 import pl.uam.movieSelector.model.MovieModel;
@@ -20,9 +21,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.positiveOne;
-import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.positiveThree;
-import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.positiveTwo;
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.POSITIVE_FIVE;
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.POSITIVE_FOUR;
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.POSITIVE_ONE;
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.POSITIVE_SEVEN;
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.POSITIVE_SIX;
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.POSITIVE_THREE;
+import static pl.uam.movieSelector.constants.FuzzyLogicConstants.ValuePostfix.POSITIVE_TWO;
 
 /**
  * Created by MikBac on 21.05.2020
@@ -45,9 +50,10 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
     private QuestionRepository questionRepository;
 
     @Override
-    public synchronized ArrayList<MovieData> predictUserAnswers(final ArrayList<UserQuestionData> userQuestions, final int nTopMovies) {
+    public synchronized ArrayList<MovieData> predictUserAnswers(final ArrayList<UserQuestionData> userQuestions, final long nTopMovies) {
         setRealUserAnswerVariables(userQuestions);
         predictAllMovies(userQuestions);
+
         return getNMoviesWithTheBestScore(nTopMovies);
     }
 
@@ -57,7 +63,6 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         for (MovieModel movie : movieRepository.findAll()) {
             fis = fuzzyLogicRepository.getFIS();
             for (UserQuestionData userQuestion : userQuestions) {
-
                 question = getQuestionByUserQuestions(userQuestion);
                 switch (question.getBaseVariable()) {
                     case RELEASED:
@@ -82,9 +87,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                         setFisVariableQuantityCountries(fis, question, movie, userQuestion);
                         break;
                 }
-                fis.setVariable(question.getVariableName() + positiveOne, userQuestion.getRealUserAnswerValue() - userQuestion.getRealUserAnswerValue());
-                fis.setVariable(question.getVariableName() + positiveTwo, userQuestion.getRealUserAnswerValue());
-                fis.setVariable(question.getVariableName() + positiveThree, userQuestion.getRealUserAnswerValue() + userQuestion.getRealUserAnswerValue());
+                setFisVariables(question, userQuestion, fis);
             }
             fis.evaluate();
             double movieScore = getScore(fis);
@@ -93,6 +96,16 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
             movieRepository.save(movie);
         }
 
+    }
+
+    private void setFisVariables(final QuestionModel question, final UserQuestionData userQuestion, final FIS fis) {
+        fis.setVariable(question.getVariableName() + POSITIVE_ONE, userQuestion.getRealUserAnswerValue() - (3 * userQuestion.getRealUserAnswerValue()));
+        fis.setVariable(question.getVariableName() + POSITIVE_TWO, userQuestion.getRealUserAnswerValue() - (2 * userQuestion.getRealUserAnswerValue()));
+        fis.setVariable(question.getVariableName() + POSITIVE_THREE, userQuestion.getRealUserAnswerValue() - (1 * userQuestion.getRealUserAnswerValue()));
+        fis.setVariable(question.getVariableName() + POSITIVE_FOUR, userQuestion.getRealUserAnswerValue());
+        fis.setVariable(question.getVariableName() + POSITIVE_FIVE, userQuestion.getRealUserAnswerValue() + (1 * userQuestion.getRealUserAnswerValue()));
+        fis.setVariable(question.getVariableName() + POSITIVE_SIX, userQuestion.getRealUserAnswerValue() + (2 * userQuestion.getRealUserAnswerValue()));
+        fis.setVariable(question.getVariableName() + POSITIVE_SEVEN, userQuestion.getRealUserAnswerValue() + (3 * userQuestion.getRealUserAnswerValue()));
     }
 
     private void setFisVariableReleased(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
@@ -204,7 +217,16 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         return fis.getVariable("score").getValue();
     }
 
-    private ArrayList<MovieData> getNMoviesWithTheBestScore(final int n) {
+    private ArrayList<MovieData> getNMoviesWithTheBestScore(long n) {
+        long movieQuantity = omdbMovieRepository.count();
+        try {
+            if (movieQuantity < n) {
+                throw new InvalidDataQuantityException(n);
+            }
+        } catch (InvalidDataQuantityException e) {
+            n = movieQuantity;
+            log.warn("Updated results quantity from {} to {}!", n, movieQuantity);
+        }
 
         ArrayList<MovieData> bestMovies = new ArrayList<>();
         ArrayList<MovieModel> movies = movieRepository.findAll();
