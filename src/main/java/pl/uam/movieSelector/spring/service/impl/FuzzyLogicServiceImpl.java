@@ -112,66 +112,86 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         String date = omdbMovieRepository.findByImdbID(movie.getId())
                 .orElseThrow(() -> new InvalidMovieException(movie.getId()))
                 .getReleased();
-        fis.setVariable(question.getVariableName(), Integer.parseInt(date.substring(date.length() - 4)));
+        final int movieRelease = Integer.parseInt(date.substring(date.length() - 4));
+        fis.setVariable(question.getVariableName(), movieRelease);
+        log.info("Movie: {},  Release variable: {}", movie.getName(), movieRelease);
     }
 
     private void setFisVariableTotalSeasons(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
         try {
-            fis.setVariable(question.getVariableName(), Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
+            final int movieTotalSeasons = Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                    .getTotalSeasons()));
+                    .getTotalSeasons());
+            fis.setVariable(question.getVariableName(), movieTotalSeasons);
+            log.info("Movie: {},  Total seasons variable: {}", movie.getName(), movieTotalSeasons);
         } catch (Exception e) {
-            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+            fis.setVariable(question.getVariableName(), 0);
+            log.info("Movie: {},  Total seasons variable: {}", movie.getName(), 0);
         }
     }
 
     private void setFisVariableRunTime(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
         try {
-            fis.setVariable(question.getVariableName(), Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
+            final int movieRunTime = Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                    .getRuntime().split("\\s+")[0]));
+                    .getRuntime().split("\\s+")[0]);
+            fis.setVariable(question.getVariableName(), movieRunTime);
+            log.info("Movie: {},  Run time variable: {}", movie.getName(), movieRunTime);
         } catch (Exception e) {
-            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+            fis.setVariable(question.getVariableName(), 0);
+            log.info("Movie: {},  Run time variable: {}", movie.getName(), 0);
         }
     }
 
     private void setFisVariableIMDBVotes(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
         try {
-            fis.setVariable(question.getVariableName(), Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
+            final long movieIMDBVotes = Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                    .getImdbVotes().replaceAll(",", "")));
+                    .getImdbVotes().replaceAll(",", ""));
+            fis.setVariable(question.getVariableName(), movieIMDBVotes);
+            log.info("Movie: {},  IMDB votes variable: {}", movie.getName(), movieIMDBVotes);
         } catch (Exception e) {
-            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+            fis.setVariable(question.getVariableName(), 0);
+            log.info("Movie: {},  IMDB votes variable: {}", movie.getName(), 0);
         }
     }
 
     private void setFisVariableMetascore(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
         try {
-            fis.setVariable(question.getVariableName(), Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
+            final long movieMetascore = Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                    .getMetascore()));
+                    .getMetascore());
+            fis.setVariable(question.getVariableName(), movieMetascore);
+            log.info("Movie: {},  Movie metascore variable: {}", movie.getName(), movieMetascore);
         } catch (Exception e) {
-            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+            fis.setVariable(question.getVariableName(), 0);
+            log.info("Movie: {},  Movie metascore variable: {}", movie.getName(), 0);
         }
     }
 
     private void setFisVariableQuantityLanguages(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
         try {
-            fis.setVariable(question.getVariableName(), omdbMovieRepository.findByImdbID(movie.getId())
+            final int movieQuantityLanguages = omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                    .getLanguage().split(",").length);
+                    .getLanguage().split(",").length;
+            fis.setVariable(question.getVariableName(), movieQuantityLanguages);
+            log.info("Movie: {},  Quantity languages variable: {}", movie.getName(), movieQuantityLanguages);
         } catch (Exception e) {
-            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+            fis.setVariable(question.getVariableName(), 0);
+            log.info("Movie: {},  Quantity languages variable: {}", movie.getName(), 0);
         }
     }
 
     private void setFisVariableQuantityCountries(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
         try {
-            fis.setVariable(question.getVariableName(), omdbMovieRepository.findByImdbID(movie.getId())
+            final int movieQuantityCountries = omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
-                    .getCountry().split(",").length);
+                    .getCountry().split(",").length;
+            fis.setVariable(question.getVariableName(), movieQuantityCountries);
+            log.info("Movie: {},  Quantity countries variable: {}", movie.getName(), movieQuantityCountries);
         } catch (Exception e) {
-            fis.setVariable(question.getVariableName(), userQuestion.getRealUserAnswerValue() - (question.getGoodValueRange() / 2));
+            fis.setVariable(question.getVariableName(), 0);
+            log.info("Movie: {},  Quantity countries variable: {}", movie.getName(), 0);
         }
     }
 
@@ -180,27 +200,29 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
 
             QuestionModel question = getQuestionByUserQuestions(userQuestion);
             double increasingValue = (question.getEndVariable() - question.getStartVariable()) / 5;
-
+            Double userAnswerVariable = null;
             switch (userQuestion.getUserAnswer()) {
                 case DEGREE_ONE:
-                    userQuestion.setRealUserAnswerValue(question.getStartVariable());
+                    userAnswerVariable = question.getStartVariable();
                     break;
                 case DEGREE_TWO:
-                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + increasingValue);
+                    userAnswerVariable = question.getStartVariable() + increasingValue;
                     break;
                 case DEGREE_THREE:
-                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + (increasingValue * 2));
+                    userAnswerVariable = question.getStartVariable() + (increasingValue * 2);
                     break;
                 case DEGREE_FOUR:
-                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + (increasingValue * 3));
+                    userAnswerVariable = question.getStartVariable() + (increasingValue * 3);
                     break;
                 case DEGREE_FIVE:
-                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + (increasingValue * 4));
+                    userAnswerVariable = question.getStartVariable() + (increasingValue * 4);
                     break;
                 case DEGREE_SIX:
-                    userQuestion.setRealUserAnswerValue(question.getStartVariable() + (increasingValue * 5));
+                    userAnswerVariable = question.getStartVariable() + (increasingValue * 5);
                     break;
             }
+            userQuestion.setRealUserAnswerValue(userAnswerVariable);
+            log.info("The user answer to the question: {} = {}", userQuestion.getDescription(), userAnswerVariable);
         }
     }
 
