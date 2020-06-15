@@ -318,61 +318,61 @@ RULEBLOCK No1
                 THEN score IS t_2;
 
     // ---- t_3 ----
-        RULE 9: IF (lengthByRunTime IS userExpected OR
-                    freeTimeBySeasons IS userExpected OR
-                    newestByRelease IS userExpected OR
-                    popularByIMDBVotes IS userExpected OR
-                    scoreByMetascore IS userExpected OR
-                    languagesByQuantityOfLanguages IS userExpected OR
-                    globalizationByQuantityOfCountries IS userExpected)
-                AND
-                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
-                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
-                    newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
-                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
-                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
-                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
-                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
-                THEN score IS t_3;
+    RULE 16: IF (lengthByRunTime IS userExpected OR
+                freeTimeBySeasons IS userExpected OR
+                newestByRelease IS userExpected OR
+                popularByIMDBVotes IS userExpected OR
+                scoreByMetascore IS userExpected OR
+                languagesByQuantityOfLanguages IS userExpected OR
+                globalizationByQuantityOfCountries IS userExpected)
+            AND
+                (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+            THEN score IS t_3;
 
     // ---- t_4 ----
-        RULE 9: IF (lengthByRunTime IS userExpected AND
-                    freeTimeBySeasons IS userExpected AND
-                    newestByRelease IS userExpected AND
-                    popularByIMDBVotes IS userExpected AND
-                    scoreByMetascore IS userExpected AND
-                    languagesByQuantityOfLanguages IS userExpected AND
-                    globalizationByQuantityOfCountries IS userExpected)
-                AND
-                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
-                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
-                    newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
-                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
-                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
-                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
-                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
-                THEN score IS t_4;
+    RULE 17: IF (lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected)
+            AND
+                (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch AND
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch AND
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch AND
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch AND
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch AND
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+            THEN score IS t_4;
 
     // ---- t_5 ----
-        RULE 9: IF (lengthByRunTime IS userExpected AND
-                    freeTimeBySeasons IS userExpected AND
-                    newestByRelease IS userExpected AND
-                    popularByIMDBVotes IS userExpected AND
-                    scoreByMetascore IS userExpected AND
-                    languagesByQuantityOfLanguages IS userExpected AND
-                    globalizationByQuantityOfCountries IS userExpected)
-                AND
-                    (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR
-                    freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR
-                    newestByRelease IS notEnough OR newestByRelease IS tooMuch OR
-                    popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch OR
-                    scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch OR
-                    languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch OR
-                    globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
-                THEN score IS t_5;
+    RULE 18: IF (lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected)
+            AND
+                (lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch OR
+                freeTimeBySeasons IS notEnough OR freeTimeBySeasons IS tooMuch OR
+                newestByRelease IS notEnough OR newestByRelease IS tooMuch OR
+                popularByIMDBVotes IS notEnough OR popularByIMDBVotes IS tooMuch OR
+                scoreByMetascore IS notEnough OR scoreByMetascore IS tooMuch OR
+                languagesByQuantityOfLanguages IS notEnough OR languagesByQuantityOfLanguages IS tooMuch OR
+                globalizationByQuantityOfCountries IS notEnough OR globalizationByQuantityOfCountries IS tooMuch)
+            THEN score IS t_5;
 
     // ---- t_6 ----
-    RULE 14: IF lengthByRunTime IS userExpected AND
+    RULE 19: IF lengthByRunTime IS userExpected AND
                 freeTimeBySeasons IS userExpected AND
                 newestByRelease IS userExpected AND
                 popularByIMDBVotes IS userExpected AND
@@ -381,7 +381,7 @@ RULEBLOCK No1
                 globalizationByQuantityOfCountries IS notEnough OR lengthByRunTime IS tooMuch
                 THEN score IS t_6;
 
-    RULE 14: IF lengthByRunTime IS userExpected AND
+    RULE 20: IF lengthByRunTime IS userExpected AND
                 freeTimeBySeasons IS userExpected AND
                 newestByRelease IS userExpected AND
                 popularByIMDBVotes IS userExpected AND
@@ -390,7 +390,7 @@ RULEBLOCK No1
                 globalizationByQuantityOfCountries IS userExpected
                 THEN score IS t_6;
 
-    RULE 14: IF lengthByRunTime IS userExpected AND
+    RULE 21: IF lengthByRunTime IS userExpected AND
                 freeTimeBySeasons IS userExpected AND
                 newestByRelease IS userExpected AND
                 popularByIMDBVotes IS userExpected AND
@@ -399,7 +399,7 @@ RULEBLOCK No1
                 globalizationByQuantityOfCountries IS userExpected
                 THEN score IS t_6;
 
-    RULE 14: IF lengthByRunTime IS userExpected AND
+    RULE 22: IF lengthByRunTime IS userExpected AND
                 freeTimeBySeasons IS userExpected AND
                 newestByRelease IS userExpected AND
                 popularByIMDBVotes IS notEnough OR lengthByRunTime IS tooMuch AND
@@ -408,7 +408,7 @@ RULEBLOCK No1
                 globalizationByQuantityOfCountries IS userExpected
                 THEN score IS t_6;
 
-    RULE 14: IF lengthByRunTime IS userExpected AND
+    RULE 23: IF lengthByRunTime IS userExpected AND
                 freeTimeBySeasons IS userExpected AND
                 newestByRelease IS notEnough OR lengthByRunTime IS tooMuch AND
                 popularByIMDBVotes IS userExpected AND
@@ -417,7 +417,7 @@ RULEBLOCK No1
                 globalizationByQuantityOfCountries IS userExpected
                 THEN score IS t_6;
 
-    RULE 14: IF lengthByRunTime IS userExpected AND
+    RULE 24: IF lengthByRunTime IS userExpected AND
                 freeTimeBySeasons IS notEnough OR lengthByRunTime IS tooMuch AND
                 newestByRelease IS userExpected AND
                 popularByIMDBVotes IS userExpected AND
@@ -426,7 +426,7 @@ RULEBLOCK No1
                 globalizationByQuantityOfCountries IS userExpected
                 THEN score IS t_6;
 
-    RULE 14: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
+    RULE 25: IF lengthByRunTime IS notEnough OR lengthByRunTime IS tooMuch AND
                 freeTimeBySeasons IS userExpected AND
                 newestByRelease IS userExpected AND
                 popularByIMDBVotes IS userExpected AND
@@ -436,14 +436,14 @@ RULEBLOCK No1
                 THEN score IS t_6;
 
     // ---- t_7 ----
-    RULE 127 : IF lengthByRunTime IS userExpected AND
-                    freeTimeBySeasons IS userExpected AND
-                    newestByRelease IS userExpected AND
-                    popularByIMDBVotes IS userExpected AND
-                    scoreByMetascore IS userExpected AND
-                    languagesByQuantityOfLanguages IS userExpected AND
-                    globalizationByQuantityOfCountries IS userExpected
-                    THEN score IS t_7;
+    RULE 26: IF lengthByRunTime IS userExpected AND
+                freeTimeBySeasons IS userExpected AND
+                newestByRelease IS userExpected AND
+                popularByIMDBVotes IS userExpected AND
+                scoreByMetascore IS userExpected AND
+                languagesByQuantityOfLanguages IS userExpected AND
+                globalizationByQuantityOfCountries IS userExpected
+                THEN score IS t_7;
 
 END_RULEBLOCK
 
