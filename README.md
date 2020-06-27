@@ -21,7 +21,28 @@
 * Set path to the fuzzy logic controller (```fuzzy.logic.controller.path```) in:
     
     ```./src/main/resources/config/application.properties```
+    
+* Personalize your questions in:
+    
+    ```./src/main/resources/import.sql```
+    
+    Parameters:
+    
+    | Name | Meaning |
+    | --- | --- |
+    | description | Description of the question. |
+    | base_movie_variable | Described value from IMDB (one of: RUN_TIME, RELEASED, TOTAL_SEASONS, IMDB_VOTES, METASCORE, QUANTITY_LANGUAGES, QUANTITY_COUNTRIES). |
+    | variable_name | Name in the fuzzy logic controller. |
+    | start_variable | Beginning of range for variable. |
+    | end_variable | End of range for variable. |
+    | good_value_range | User response range (+/- good_value_range). |
 
+
+* Personalize movie list:
+    
+    ```./src/main/resources/import.sql```
+    
+    
 ## Built with
 
 * [JDK 11](https://www.oracle.com/technetwork/java/index.html)

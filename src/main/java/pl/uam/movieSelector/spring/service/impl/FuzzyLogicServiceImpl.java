@@ -66,25 +66,25 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                 question = getQuestionByUserQuestions(userQuestion);
                 switch (question.getBaseVariable()) {
                     case RELEASED:
-                        setFisVariableReleased(fis, question, movie, userQuestion);
+                        setFisVariableReleased(fis, question, movie);
                         break;
                     case TOTAL_SEASONS:
-                        setFisVariableTotalSeasons(fis, question, movie, userQuestion);
+                        setFisVariableTotalSeasons(fis, question, movie);
                         break;
                     case RUN_TIME:
-                        setFisVariableRunTime(fis, question, movie, userQuestion);
+                        setFisVariableRunTime(fis, question, movie);
                         break;
                     case IMDB_VOTES:
-                        setFisVariableIMDBVotes(fis, question, movie, userQuestion);
+                        setFisVariableIMDBVotes(fis, question, movie);
                         break;
                     case METASCORE:
-                        setFisVariableMetascore(fis, question, movie, userQuestion);
+                        setFisVariableMetascore(fis, question, movie);
                         break;
                     case QUANTITY_LANGUAGES:
-                        setFisVariableQuantityLanguages(fis, question, movie, userQuestion);
+                        setFisVariableQuantityLanguages(fis, question, movie);
                         break;
                     case QUANTITY_COUNTRIES:
-                        setFisVariableQuantityCountries(fis, question, movie, userQuestion);
+                        setFisVariableQuantityCountries(fis, question, movie);
                         break;
                 }
                 setFisVariables(question, userQuestion, fis);
@@ -108,7 +108,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         fis.setVariable(question.getVariableName() + POSITIVE_SEVEN, userQuestion.getRealUserAnswerValue() + (3 * userQuestion.getRealUserAnswerValue()));
     }
 
-    private void setFisVariableReleased(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+    private void setFisVariableReleased(final FIS fis, final QuestionModel question, final MovieModel movie) {
         String date = omdbMovieRepository.findByImdbID(movie.getId())
                 .orElseThrow(() -> new InvalidMovieException(movie.getId()))
                 .getReleased();
@@ -117,7 +117,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         log.info("Movie: {},  Release variable: {}", movie.getName(), movieRelease);
     }
 
-    private void setFisVariableTotalSeasons(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+    private void setFisVariableTotalSeasons(final FIS fis, final QuestionModel question, final MovieModel movie) {
         try {
             final int movieTotalSeasons = Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
@@ -130,7 +130,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         }
     }
 
-    private void setFisVariableRunTime(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+    private void setFisVariableRunTime(final FIS fis, final QuestionModel question, final MovieModel movie) {
         try {
             final int movieRunTime = Integer.parseInt(omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
@@ -143,7 +143,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         }
     }
 
-    private void setFisVariableIMDBVotes(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+    private void setFisVariableIMDBVotes(final FIS fis, final QuestionModel question, final MovieModel movie) {
         try {
             final long movieIMDBVotes = Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
@@ -156,7 +156,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         }
     }
 
-    private void setFisVariableMetascore(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+    private void setFisVariableMetascore(final FIS fis, final QuestionModel question, final MovieModel movie) {
         try {
             final long movieMetascore = Long.parseLong(omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
@@ -169,7 +169,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         }
     }
 
-    private void setFisVariableQuantityLanguages(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+    private void setFisVariableQuantityLanguages(final FIS fis, final QuestionModel question, final MovieModel movie) {
         try {
             final int movieQuantityLanguages = omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
@@ -182,7 +182,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         }
     }
 
-    private void setFisVariableQuantityCountries(final FIS fis, final QuestionModel question, final MovieModel movie, UserQuestionData userQuestion) {
+    private void setFisVariableQuantityCountries(final FIS fis, final QuestionModel question, final MovieModel movie) {
         try {
             final int movieQuantityCountries = omdbMovieRepository.findByImdbID(movie.getId())
                     .orElseThrow(() -> new InvalidMovieException(movie.getId()))
