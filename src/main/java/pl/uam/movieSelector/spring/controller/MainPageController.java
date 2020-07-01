@@ -14,9 +14,9 @@ import pl.uam.movieSelector.spring.facade.MainPageFacade;
 
 import javax.annotation.Resource;
 
-import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.COUNTRIES;
 import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.QUESTIONS_LIST;
 import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.THE_BEST_MOVIES;
+import static pl.uam.movieSelector.constants.WebConstants.Mapping.N_TOP_MOVIES;
 
 /**
  * Created by MikBac on 21.05.2020
@@ -31,14 +31,14 @@ public class MainPageController {
 
     @GetMapping
     public String get(final Model model) {
-        model.addAttribute(QUESTIONS_LIST, new QuestionsData(mainPageFacade.getAllQueries()));
+        populateCommonAttributes(model);
 
         return Views.MAIN_PAGE;
     }
 
-    @PostMapping("/predict/{nTopMovies}")
+    @PostMapping(N_TOP_MOVIES)
     public String getMovie(@ModelAttribute final QuestionsData questionsList, @PathVariable final int nTopMovies, final Model model) {
-        model.addAttribute(QUESTIONS_LIST, questionsList);
+        populateCommonAttributes(model);
         model.addAttribute(THE_BEST_MOVIES, mainPageFacade.predictMovie(questionsList.getQuestions(), nTopMovies));
 
         return Views.MAIN_PAGE;
@@ -46,9 +46,13 @@ public class MainPageController {
 
     @PostMapping
     public String setLanguage(final Model model) {
-        model.addAttribute(QUESTIONS_LIST, new QuestionsData(mainPageFacade.getAllQueries()));
+        populateCommonAttributes(model);
 
         return Views.MAIN_PAGE;
+    }
+
+    private void populateCommonAttributes(final Model model) {
+        model.addAttribute(QUESTIONS_LIST, new QuestionsData(mainPageFacade.getAllQueries()));
     }
 
 }

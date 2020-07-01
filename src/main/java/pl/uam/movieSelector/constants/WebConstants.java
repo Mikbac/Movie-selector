@@ -8,6 +8,8 @@ public interface WebConstants {
 
     interface Mapping {
         String ROOT = "/";
+        String PREDICT = "/predict";
+        String N_TOP_MOVIES = PREDICT + "/{nTopMovies}";
     }
 
     interface Views {
