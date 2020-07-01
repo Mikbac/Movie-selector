@@ -1,0 +1,26 @@
+<!--
+Created by MikBac on 30.06.2020
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="language">
+    <div class="row">
+        <div class="col-12">
+            <h3><span th:text="#{main.page.language.select.text}"></span></h3>
+        </div>
+        <div class="col-12 mt-2">
+            <form method="post" th:action="@{'/?lang=en'}">
+                <button class="btn btn-lg btn-secondary btn-block"><span
+                        th:text="#{main.page.language.english.text}"></span></button>
+            </form>
+        </div>
+        <div class="col-12 mt-2">
+            <form method="post" th:action="@{'/?lang=pl'}">
+                <button class="btn btn-lg btn-secondary btn-block"><span
+                        th:text="#{main.page.language.polish.text}"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+</th:block>
+</html>

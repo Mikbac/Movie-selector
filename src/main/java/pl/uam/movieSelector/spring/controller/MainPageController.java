@@ -14,6 +14,7 @@ import pl.uam.movieSelector.spring.facade.MainPageFacade;
 
 import javax.annotation.Resource;
 
+import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.COUNTRIES;
 import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.QUESTIONS_LIST;
 import static pl.uam.movieSelector.constants.AttributeConstants.ModelAttributes.MainPage.THE_BEST_MOVIES;
 
@@ -39,6 +40,13 @@ public class MainPageController {
     public String getMovie(@ModelAttribute final QuestionsData questionsList, @PathVariable final int nTopMovies, final Model model) {
         model.addAttribute(QUESTIONS_LIST, questionsList);
         model.addAttribute(THE_BEST_MOVIES, mainPageFacade.predictMovie(questionsList.getQuestions(), nTopMovies));
+
+        return Views.MAIN_PAGE;
+    }
+
+    @PostMapping
+    public String setLanguage(final Model model) {
+        model.addAttribute(QUESTIONS_LIST, new QuestionsData(mainPageFacade.getAllQueries()));
 
         return Views.MAIN_PAGE;
     }
