@@ -1,4 +1,4 @@
-
+![GitHub](https://img.shields.io/github/license/Mikbac/Movie-selector)
 
 # Table of contents
 * [Fuzzy logic](#fuzzy-logic)
