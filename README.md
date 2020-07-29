@@ -3,6 +3,7 @@
 # Table of contents
 * [Fuzzy logic](#fuzzy-logic)
 * [Configuration](#configuration)
+* [Example](#example)
 * [Built with](#built-with)
 
 ## Fuzzy logic
@@ -42,6 +43,8 @@
     
     ```./src/main/resources/import.sql```
     
+### Question rating:
+![ex1](img/Example-1-0.png)    
     
 ## Built with
 
