@@ -42,8 +42,8 @@
 * Personalize movie list:
     
     ```./src/main/resources/import.sql```
-    
-### Question rating:
+
+## Example
 ![ex1](img/Example-1-0.png)    
     
 ## Built with
