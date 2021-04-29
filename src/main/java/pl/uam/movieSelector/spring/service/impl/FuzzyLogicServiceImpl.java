@@ -3,7 +3,6 @@ package pl.uam.movieSelector.spring.service.impl;
 import lombok.extern.log4j.Log4j2;
 import net.sourceforge.jFuzzyLogic.FIS;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.uam.movieSelector.data.impl.MovieData;
 import pl.uam.movieSelector.data.impl.UserQuestionData;
@@ -51,7 +50,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
     @Resource
     private QuestionRepository questionRepository;
 
-    @Autowired
+    @Resource
     private BeanFactory beanFactory;
 
     @Override

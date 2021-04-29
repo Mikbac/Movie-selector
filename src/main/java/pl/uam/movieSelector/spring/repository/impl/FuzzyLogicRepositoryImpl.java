@@ -1,10 +1,12 @@
 package pl.uam.movieSelector.spring.repository.impl;
 
 import net.sourceforge.jFuzzyLogic.FIS;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import pl.uam.movieSelector.exception.InvalidFclFileException;
+import pl.uam.movieSelector.spring.property.FuzzyLogicProperties;
 import pl.uam.movieSelector.spring.repository.FuzzyLogicRepository;
+
+import javax.annotation.Resource;
 
 /**
  * Created by MikBac on 21.05.2020
@@ -13,8 +15,8 @@ import pl.uam.movieSelector.spring.repository.FuzzyLogicRepository;
 @Repository
 public class FuzzyLogicRepositoryImpl implements FuzzyLogicRepository {
 
-    @Value("${fuzzy.logic.controller.path}")
-    private String fuzzyLogicController;
+    @Resource
+    private FuzzyLogicProperties fuzzyLogicProperties;
 
     @Override
     public FIS getFIS() {
@@ -23,16 +25,20 @@ public class FuzzyLogicRepositoryImpl implements FuzzyLogicRepository {
 
     private FIS loadFclFile() {
 
-        FIS fis = FIS.load(fuzzyLogicController, true);
+        FIS fis = FIS.load(getFuzzyLogicControllerPath(), true);
         try {
             if (fis == null) {
-                throw new InvalidFclFileException(fuzzyLogicController);
+                throw new InvalidFclFileException(getFuzzyLogicControllerPath());
             }
             return fis;
         } catch (InvalidFclFileException e) {
             return null;
         }
 
+    }
+
+    private String getFuzzyLogicControllerPath() {
+        return fuzzyLogicProperties.getPath();
     }
 
 }

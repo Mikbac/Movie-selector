@@ -3,6 +3,7 @@
 # Table of contents
 * [Fuzzy logic](#fuzzy-logic)
 * [Configuration](#configuration)
+* [Installing](#installing)
 * [Example](#example)
 * [Built with](#built-with)
 
@@ -48,7 +49,7 @@
     
 ## Built with
 
-* [JDK 11](https://www.oracle.com/technetwork/java/index.html)
+* [JDK 11 Oracle](https://www.oracle.com/technetwork/java/index.html)
 
 * [Spring Boot - 2.3.0.RELEASE](https://spring.io/projects/spring-boot) 
     * [Log4j](https://logging.apache.org/log4j/2.x/)

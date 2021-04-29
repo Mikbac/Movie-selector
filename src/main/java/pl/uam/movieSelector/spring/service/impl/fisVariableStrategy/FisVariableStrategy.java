@@ -7,6 +7,7 @@ import pl.uam.movieSelector.model.QuestionModel;
 /**
  * Created by MikBac on 30.06.2020
  */
+
 public interface FisVariableStrategy {
 
     void setFisVariable(final FIS fis, final QuestionModel question, final MovieModel movie);
