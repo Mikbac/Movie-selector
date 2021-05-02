@@ -1,18 +1,21 @@
 package pl.uam.movieSelector.spring.property;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.lang.NonNull;
 
 /**
  * Created by MikBac on 28.04.2021
  */
 
-@ConfigurationProperties(prefix = "omdb.api")
 @Getter
 @Setter
+@ConfigurationProperties(prefix = "omdb.api")
 public class OmdbProperties {
+
+    @NonNull
+    private String url;
 
     @NonNull
     private String key;

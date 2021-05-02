@@ -1,13 +1,19 @@
 {
   "properties": [
     {
+      "name": "omdb.api.url",
+      "type": "java.lang.String",
+      "description": "Api URL for OMDB API (from https://www.omdbapi.com/)."
+    },
+    {
       "name": "omdb.api.key",
       "type": "java.lang.String",
-      "description": "Api key for OMDB Api (from http://www.omdbapi.com/)."
+      "description": "Api key for OMDB API (from https://www.omdbapi.com/)."
     },
     {
       "name": "fuzzy.logic.controller.path",
       "type": "java.lang.String",
       "description": "Path for the fuzzy logic controller."
     }
-  ] }
+  ]
+}

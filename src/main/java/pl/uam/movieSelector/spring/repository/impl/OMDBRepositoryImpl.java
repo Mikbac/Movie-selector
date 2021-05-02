@@ -12,10 +12,11 @@ import pl.uam.movieSelector.spring.repository.OMDBRepository;
 import javax.annotation.Resource;
 import java.util.Optional;
 
-import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.API_KEY;
-import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.MOVIE_ID;
-import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.MOVIE_TITLE;
-import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.ROOT;
+import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.AND;
+import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.Name.API_KEY;
+import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.Name.MOVIE_ID;
+import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.Name.MOVIE_TITLE;
+import static pl.uam.movieSelector.constants.OMDBApiConstants.ParametersOMDB.PARAMS_PREFIX;
 
 /**
  * Created by MikBac on 21.05.2020
@@ -30,15 +31,14 @@ public class OMDBRepositoryImpl implements OMDBRepository {
 
     @Override
     public Optional<OMDBMovieModel> getMovieByTitle(final String title) {
-
         log.info("Get movie: {} from IMDB by title", () -> title);
-        return getMovie(ROOT + API_KEY + getOMDBApiKey() + MOVIE_TITLE + title);
+        return getMovie(getOMDBApiUrl() + PARAMS_PREFIX + API_KEY + getOMDBApiKey() + AND + MOVIE_TITLE + title);
     }
 
     @Override
     public Optional<OMDBMovieModel> getMovieById(final String id) {
         log.info("Get movie: {} from IMDB by id", () -> id);
-        return getMovie(ROOT + API_KEY + getOMDBApiKey() + MOVIE_ID + id);
+        return getMovie(getOMDBApiUrl() + PARAMS_PREFIX + API_KEY + getOMDBApiKey() + AND + MOVIE_ID + id);
     }
 
     private Optional<OMDBMovieModel> getMovie(final String url) {
@@ -50,6 +50,10 @@ public class OMDBRepositoryImpl implements OMDBRepository {
             log.error("Invalid API address for url: {}", () -> url);
             throw new InvalidApiAddressException(url);
         }
+    }
+
+    private String getOMDBApiUrl() {
+        return omdbProperties.getUrl();
     }
 
     private String getOMDBApiKey() {
