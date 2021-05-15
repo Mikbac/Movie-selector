@@ -17,11 +17,12 @@ public class MappingConfig {
 
     @Bean
     public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
-        ObjectMapper objectMapper = new ObjectMapper();
+        final var objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        final var jsonConverter = new MappingJackson2HttpMessageConverter();
         jsonConverter.setObjectMapper(objectMapper);
         return jsonConverter;
     }

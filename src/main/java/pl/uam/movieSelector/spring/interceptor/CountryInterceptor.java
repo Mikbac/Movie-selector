@@ -17,7 +17,10 @@ import java.util.Locale;
 public class CountryInterceptor extends HandlerInterceptorAdapter {
 
     @Override
-    public void postHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler, final ModelAndView modelAndView) throws Exception {
+    public void postHandle(final HttpServletRequest request,
+                           final HttpServletResponse response,
+                           final Object handler,
+                           final ModelAndView modelAndView) throws Exception {
         log.info("[postHandle][{}]", () -> request);
         if (modelAndView != null) {
             modelAndView.addObject(AllPages.LANGUAGE, Locale.getDefault());

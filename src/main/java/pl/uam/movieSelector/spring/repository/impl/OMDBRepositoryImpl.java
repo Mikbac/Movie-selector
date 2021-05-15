@@ -43,7 +43,7 @@ public class OMDBRepositoryImpl implements OMDBRepository {
 
     private Optional<OMDBMovieModel> getMovie(final String url) {
         try {
-            RestTemplate restTemplate = new RestTemplate();
+            final var restTemplate = new RestTemplate();
             OMDBMovieModel omdbMovieModel = restTemplate.getForObject(url, OMDBMovieModel.class);
             return Optional.ofNullable(omdbMovieModel);
         } catch (HttpClientErrorException e) {

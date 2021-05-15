@@ -30,29 +30,32 @@ public class MainPageController {
     private MainPageFacade mainPageFacade;
 
     @GetMapping
-    public String get(final Model model) {
-        populateCommonAttributes(model);
-
-        return Views.MAIN_PAGE;
-    }
-
-    @PostMapping(N_TOP_MOVIES)
-    public String getMovie(@ModelAttribute final QuestionsData questionsList, @PathVariable final int nTopMovies, final Model model) {
-        populateCommonAttributes(model);
-        model.addAttribute(THE_BEST_MOVIES, mainPageFacade.predictMovie(questionsList.getQuestions(), nTopMovies));
+    public String getMainPage(final Model model) {
+        populateCommonAttributes(model, null);
 
         return Views.MAIN_PAGE;
     }
 
     @PostMapping
     public String setLanguage(final Model model) {
-        populateCommonAttributes(model);
+        populateCommonAttributes(model, null);
 
         return Views.MAIN_PAGE;
     }
 
-    private void populateCommonAttributes(final Model model) {
-        model.addAttribute(QUESTIONS_LIST, new QuestionsData(mainPageFacade.getAllQueries()));
+    @PostMapping(N_TOP_MOVIES)
+    public String getMovie(@ModelAttribute final QuestionsData questionsList,
+                           @PathVariable final int nTopMovies,
+                           final Model model) {
+        populateCommonAttributes(model, questionsList);
+
+        model.addAttribute(THE_BEST_MOVIES, mainPageFacade.predictMovie(questionsList.getQuestions(), nTopMovies));
+
+        return Views.MAIN_PAGE;
+    }
+
+    private void populateCommonAttributes(final Model model, final QuestionsData questionsList) {
+        model.addAttribute(QUESTIONS_LIST, questionsList != null ? questionsList : new QuestionsData(mainPageFacade.getAllQueries()));
     }
 
 }

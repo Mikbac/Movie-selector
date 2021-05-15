@@ -90,6 +90,9 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                     case QUANTITY_COUNTRIES:
                         beanFactory.getBean("quantityCountriesStrategy", FisVariableStrategy.class).setFisVariable(fis, question, movie);
                         break;
+                    default:
+                        log.error("Unknown question variable: {}", question.getBaseVariable());
+                        break;
                 }
                 setFisVariables(question, userQuestion, fis);
             }
@@ -136,6 +139,9 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                     break;
                 case DEGREE_SIX:
                     userAnswerVariable = question.getStartVariable() + (increasingValue * 5);
+                    break;
+                default:
+                    log.error("Unknown user answer degree: {}", userQuestion.getUserAnswer());
                     break;
             }
             userQuestion.setRealUserAnswerValue(userAnswerVariable);

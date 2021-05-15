@@ -25,7 +25,7 @@ public class FuzzyLogicRepositoryImpl implements FuzzyLogicRepository {
 
     private FIS loadFclFile() {
 
-        FIS fis = FIS.load(getFuzzyLogicControllerPath(), true);
+        final var fis = FIS.load(getFuzzyLogicControllerPath(), true);
         try {
             if (fis == null) {
                 throw new InvalidFclFileException(getFuzzyLogicControllerPath());
