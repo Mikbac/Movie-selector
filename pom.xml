@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -9,6 +11,14 @@
         <version>2.3.0.RELEASE</version>
         <relativePath/>
     </parent>
+
+    <repositories>
+        <repository>
+            <id>libs-in-project</id>
+            <name>libs</name>
+            <url>file://${project.basedir}/libs</url>
+        </repository>
+    </repositories>
 
     <groupId>pl.uam</groupId>
     <artifactId>movieSelector</artifactId>
@@ -93,17 +103,15 @@
         </dependency>
 
         <dependency>
-            <groupId>net.sourceforge</groupId>
-            <artifactId>jFuzzyLogic</artifactId>
-            <version>1.0.0</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/libs/jFuzzyLogic.jar</systemPath>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jFuzzyLogic</groupId>
+            <artifactId>jFuzzyLogic-sdk</artifactId>
+            <version>1.2.1</version>
         </dependency>
 
         <dependency>
