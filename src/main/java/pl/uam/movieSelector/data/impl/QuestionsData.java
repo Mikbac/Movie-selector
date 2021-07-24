@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.uam.movieSelector.data.Data;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by MikBac on 24.05.2020
@@ -20,6 +20,6 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class QuestionsData implements Data {
 
-    private ArrayList<UserQuestionData> questions;
+    private List<UserQuestionData> questions;
 
 }
