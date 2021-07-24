@@ -1,3 +1,5 @@
+![example workflow](https://github.com/Mikbac/Movie-selector/actions/workflows/maven.yml/badge.svg) 
+
 ![GitHub](https://img.shields.io/github/license/Mikbac/Movie-selector)
 
 # Table of contents
