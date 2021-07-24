@@ -44,6 +44,16 @@
     
     ```./src/main/resources/import.sql```
 
+### Installing
+1. Set [API key](http://www.omdbapi.com/apikey.aspx) (details above).
+2. Build and run the application:
+```
+mvn install
+cd target  
+java -jar movieSelector-1.0-SNAPSHOT.jar
+```
+3. Open the browser and hit ```http://localhost:8080/```.
+
 ## Example
 ![ex1](img/Example-1-0.png)    
     
@@ -55,6 +65,6 @@
     * [Log4j](https://logging.apache.org/log4j/2.x/)
     * [HSQLDB](http://hsqldb.org/)
 
-* [jFuzzyLogic](http://jfuzzylogic.sourceforge.net/html/index.html) 
+* [jFuzzyLogic](http://jfuzzylogic.sourceforge.net/html/index.html) - Due to the use of the latest version of the library, the jar file is attached to the project (in Maven repository the library is out of date).
 
 * [Swagger2](https://swagger.io/)
