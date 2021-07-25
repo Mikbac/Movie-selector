@@ -11,7 +11,6 @@ import pl.uam.movieSelector.spring.service.QuestionService;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -31,15 +30,15 @@ public class MainPageFacadeImpl implements MainPageFacade {
     private FuzzyLogicService fuzzyLogicService;
 
     @Override
-    public List<UserQuestionData> getAllQueries() {
+    public ArrayList<UserQuestionData> getAllQueries() {
         return questionService.getAllQueries().stream()
                 .map(q -> questionConverter.convert(q))
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override
-    public List<MovieData> predictMovie(final List<UserQuestionData> userQuestions, final int nTopMovies) {
-        return fuzzyLogicService.predictUserAnswers((ArrayList<UserQuestionData>) userQuestions, nTopMovies);
+    public ArrayList<MovieData> predictMovie(final ArrayList<UserQuestionData> userQuestions, final int topMoviesQuantity) {
+        return fuzzyLogicService.predictUserAnswers(userQuestions, topMoviesQuantity);
     }
 
 }

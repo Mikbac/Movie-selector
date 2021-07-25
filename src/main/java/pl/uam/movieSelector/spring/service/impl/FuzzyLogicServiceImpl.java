@@ -18,6 +18,8 @@ import pl.uam.movieSelector.spring.service.FuzzyLogicService;
 import pl.uam.movieSelector.spring.service.impl.fisVariableStrategy.FisVariableStrategy;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -54,11 +56,11 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
     private BeanFactory beanFactory;
 
     @Override
-    public synchronized ArrayList<MovieData> predictUserAnswers(final ArrayList<UserQuestionData> userQuestions, final long nTopMovies) {
+    public synchronized ArrayList<MovieData> predictUserAnswers(final ArrayList<UserQuestionData> userQuestions, final long topMoviesQuantity) {
         setRealUserAnswerVariables(userQuestions);
         predictAllMovies(userQuestions);
 
-        return getNMoviesWithTheBestScore(nTopMovies);
+        return getNMoviesWithTheBestScore(topMoviesQuantity);
     }
 
     private void predictAllMovies(final ArrayList<UserQuestionData> userQuestions) {
@@ -97,7 +99,7 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                 setFisVariables(question, userQuestion, fis);
             }
             fis.evaluate();
-            double movieScore = getScore(fis);
+            BigDecimal movieScore = getScore(fis);
             log.info("Predict movie: {} ({}) - score: {}", movie::getName, movie::getId, () -> movieScore);
             movie.setScore(movieScore);
             movieRepository.save(movie);
@@ -157,9 +159,9 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
                 .orElseThrow(() -> new InvalidQuestionException(userQuestion.getPk()));
     }
 
-    private double getScore(final FIS fis) {
+    private BigDecimal getScore(final FIS fis) {
         fis.evaluate();
-        return fis.getVariable("score").getValue();
+        return BigDecimal.valueOf(fis.getVariable("score").getValue()).setScale(2, RoundingMode.CEILING);
     }
 
     private ArrayList<MovieData> getNMoviesWithTheBestScore(long n) {

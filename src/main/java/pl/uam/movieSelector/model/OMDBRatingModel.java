@@ -14,7 +14,8 @@ import javax.persistence.Embeddable;
 public class OMDBRatingModel {
 
     @JsonProperty("Source")
-    private String Source;
+    private String source;
+
     @JsonProperty("value")
     private String value;
 

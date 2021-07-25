@@ -3,7 +3,7 @@ package pl.uam.movieSelector.spring.facade;
 import pl.uam.movieSelector.data.impl.MovieData;
 import pl.uam.movieSelector.data.impl.UserQuestionData;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by MikBac on 22.05.2020
@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface MainPageFacade {
 
-    List<UserQuestionData> getAllQueries();
+    ArrayList<UserQuestionData> getAllQueries();
 
-    List<MovieData> predictMovie(final List<UserQuestionData> questions, final int nTopMovies);
+    ArrayList<MovieData> predictMovie(ArrayList<UserQuestionData> questions, int topMoviesQuantity);
 
 }

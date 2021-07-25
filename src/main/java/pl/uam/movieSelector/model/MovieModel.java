@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 /**
  * Created by MikBac on 21.05.2020
@@ -39,6 +40,6 @@ public class MovieModel {
     private String id;
 
     @Column(name = Movie.SCORE)
-    private Double score;
+    private BigDecimal score;
 
 }
