@@ -1,3 +1,7 @@
+![example workflow](https://github.com/Mikbac/Movie-selector/actions/workflows/maven.yml/badge.svg) 
+
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/Mikbac/Movie-selector.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Mikbac/Movie-selector/context:java) [![Total alerts](https://img.shields.io/lgtm/alerts/g/Mikbac/Movie-selector.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Mikbac/Movie-selector/alerts/)
+
 ![GitHub](https://img.shields.io/github/license/Mikbac/Movie-selector)
 
 # Table of contents

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.uam.movieselector.data.Data;
 
+import java.math.BigDecimal;
+
 /**
  * Created by MikBac on 30.05.2020
  */
@@ -19,6 +21,6 @@ import pl.uam.movieselector.data.Data;
 public class MovieData implements Data {
 
     private String name;
-    private double score;
+    private BigDecimal score;
 
 }
