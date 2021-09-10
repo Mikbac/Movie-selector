@@ -17,24 +17,24 @@
                         </td>
                         <h4 th:text="${question.description}"></h4>
                         <select class="custom-select" th:name="|questions[${itemStat.index}].userAnswer|">
-                            <option th:value="${T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_ONE}"
+                            <option th:value="${T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_ONE}"
                                     th:text="#{main.page.answer.option.degree.one.text}"
-                                    th:selected="${question.userAnswer == T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_ONE}"></option>
-                            <option th:value="${T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_TWO}"
+                                    th:selected="${question.userAnswer == T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_ONE}"></option>
+                            <option th:value="${T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_TWO}"
                                     th:text="#{main.page.answer.option.degree.two.text}"
-                                    th:selected="${question.userAnswer == T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_TWO}"></option>
-                            <option th:value="${T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_THREE}"
+                                    th:selected="${question.userAnswer == T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_TWO}"></option>
+                            <option th:value="${T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_THREE}"
                                     th:text="#{main.page.answer.option.degree.three.text}"
-                                    th:selected="${question.userAnswer == T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_THREE}"></option>
-                            <option th:value="${T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_FOUR}"
+                                    th:selected="${question.userAnswer == T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_THREE}"></option>
+                            <option th:value="${T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_FOUR}"
                                     th:text="#{main.page.answer.option.degree.four.text}"
-                                    th:selected="${question.userAnswer == T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_FOUR}"></option>
-                            <option th:value="${T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_FIVE}"
+                                    th:selected="${question.userAnswer == T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_FOUR}"></option>
+                            <option th:value="${T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_FIVE}"
                                     th:text="#{main.page.answer.option.degree.five.text}"
-                                    th:selected="${question.userAnswer == T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_FIVE}"></option>
-                            <option th:value="${T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_SIX}"
+                                    th:selected="${question.userAnswer == T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_FIVE}"></option>
+                            <option th:value="${T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_SIX}"
                                     th:text="#{main.page.answer.option.degree.six.text}"
-                                    th:selected="${question.userAnswer == T(pl.uam.movieselector.data.enums.AnswerEnum).DEGREE_SIX}"></option>
+                                    th:selected="${question.userAnswer == T(pl.uam.movie_selector.data.enums.AnswerEnum).DEGREE_SIX}"></option>
                         </select>
                     </tr>
                     </tbody>
