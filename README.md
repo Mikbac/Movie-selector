@@ -58,8 +58,8 @@ java -jar movieSelector-1.0-SNAPSHOT.jar
 ```
 or
 ```
-docker build --tag mikbac/movieselector:1.0 -f Dockerfile .
-docker container run -p 8080:8080 --ip 0.0.0.0 --name movieselector mikbac/movieselector:1.0
+docker build --tag mikbac/movie_selector:1.0 -f Dockerfile .
+docker container run -p 8080:8080 --ip 0.0.0.0 --name movie_selector mikbac/movie_selector:1.0
 ```
 3. Open the browser and hit ```http://localhost:8080/```.
 

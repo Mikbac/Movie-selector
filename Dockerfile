@@ -7,4 +7,4 @@ COPY libs ./libs/
 
 RUN mvn package -DskipTests
 
-CMD ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/target/movieselector-1.0-SNAPSHOT.jar"]
+CMD ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/target/movie_selector-1.0-SNAPSHOT.jar"]

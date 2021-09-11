@@ -21,8 +21,8 @@
     </repositories>
 
     <groupId>pl.uam</groupId>
-    <artifactId>movieselector</artifactId>
-    <name>movieselector</name>
+    <artifactId>movie_selector</artifactId>
+    <name>movie_selector</name>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
