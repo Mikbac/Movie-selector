@@ -6,6 +6,9 @@ package pl.uam.movie_selector.spring.service;
 
 public interface OMDBMovieService {
 
-    void LoadOMDBMovie();
+    /**
+     * Download movie details from the OMDB API.
+     */
+    void downloadOMDBMovies();
 
 }

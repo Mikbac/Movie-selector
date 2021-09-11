@@ -56,9 +56,9 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
     private BeanFactory beanFactory;
 
     @Override
-    public synchronized ArrayList<MovieData> predictUserAnswers(final ArrayList<UserQuestionData> userQuestions, final long topMoviesQuantity) {
-        setRealUserAnswerVariables(userQuestions);
-        predictAllMovies(userQuestions);
+    public synchronized ArrayList<MovieData> predictUserAnswers(final ArrayList<UserQuestionData> userAnswers, final long topMoviesQuantity) {
+        setRealUserAnswerVariables(userAnswers);
+        predictAllMovies(userAnswers);
 
         return getNMoviesWithTheBestScore(topMoviesQuantity);
     }

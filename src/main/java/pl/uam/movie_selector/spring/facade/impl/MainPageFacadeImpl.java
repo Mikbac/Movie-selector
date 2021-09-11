@@ -37,8 +37,8 @@ public class MainPageFacadeImpl implements MainPageFacade {
     }
 
     @Override
-    public ArrayList<MovieData> predictMovie(final ArrayList<UserQuestionData> userQuestions, final int topMoviesQuantity) {
-        return fuzzyLogicService.predictUserAnswers(userQuestions, topMoviesQuantity);
+    public ArrayList<MovieData> predictMovie(final ArrayList<UserQuestionData> userAnswers, final int topMoviesQuantity) {
+        return fuzzyLogicService.predictUserAnswers(userAnswers, topMoviesQuantity);
     }
 
 }

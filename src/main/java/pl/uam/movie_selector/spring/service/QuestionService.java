@@ -10,6 +10,11 @@ import java.util.ArrayList;
 
 public interface QuestionService {
 
+    /**
+     * Get the list of all queries.
+     *
+     * @return list of all queries for user {@link QuestionModel}.
+     */
     ArrayList<QuestionModel> getAllQueries();
 
 }

@@ -14,6 +14,11 @@ import java.util.ArrayList;
 @Repository
 public interface MovieRepository extends CrudRepository<MovieModel, Integer>, PagingAndSortingRepository<MovieModel, Integer> {
 
+    /**
+     * Get the list of all movies.
+     *
+     * @return list of all movies {@link MovieModel}.
+     */
     ArrayList<MovieModel> findAll();
 
 }

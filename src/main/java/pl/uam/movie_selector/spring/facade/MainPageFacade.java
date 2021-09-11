@@ -11,8 +11,20 @@ import java.util.ArrayList;
 
 public interface MainPageFacade {
 
+    /**
+     * Get the list of all queries.
+     *
+     * @return list of all queries for user {@link UserQuestionData}.
+     */
     ArrayList<UserQuestionData> getAllQueries();
 
-    ArrayList<MovieData> predictMovie(ArrayList<UserQuestionData> questions, int topMoviesQuantity);
+    /**
+     * Get the list of predicted movies.
+     *
+     * @param userAnswers       list of user responses.
+     * @param topMoviesQuantity quantity of returned movies.
+     * @return list of {@link MovieData}.
+     */
+    ArrayList<MovieData> predictMovie(ArrayList<UserQuestionData> userAnswers, int topMoviesQuantity);
 
 }

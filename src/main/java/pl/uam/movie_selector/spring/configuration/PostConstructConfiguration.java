@@ -22,7 +22,7 @@ public class PostConstructConfiguration {
     @EventListener(ApplicationReadyEvent.class)
     public void initOMDBData() {
         log.info("Initializing data from OMDB!");
-        omdbMovieService.LoadOMDBMovie();
+        omdbMovieService.downloadOMDBMovies();
     }
 
 }

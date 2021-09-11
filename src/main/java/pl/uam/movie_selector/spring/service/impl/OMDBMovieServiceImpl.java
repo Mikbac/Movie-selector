@@ -26,7 +26,7 @@ public class OMDBMovieServiceImpl implements OMDBMovieService {
     private OMDBMovieRepository omdbMovieRepository;
 
     @Override
-    public void LoadOMDBMovie() {
+    public void downloadOMDBMovies() {
         movieRepository.findAll()
                 .forEach(m -> omdbMovieRepository.save(omdbRepository.getMovieById(m.getId())
                         .orElseThrow(InvalidOMDBModelException::new)));

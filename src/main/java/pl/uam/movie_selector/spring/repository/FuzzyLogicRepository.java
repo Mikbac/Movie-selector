@@ -8,6 +8,11 @@ import net.sourceforge.jFuzzyLogic.FIS;
 
 public interface FuzzyLogicRepository {
 
+    /**
+     * Get fuzzy logic controller.
+     *
+     * @return fuzzy logic controller {@link FIS}.
+     */
     FIS getFIS();
 
 }

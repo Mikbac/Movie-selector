@@ -10,8 +10,20 @@ import java.util.Optional;
 
 public interface OMDBRepository {
 
+    /**
+     * Get movie by title (from OMDB API).
+     *
+     * @param title movie title.
+     * @return movie {@link OMDBMovieModel}.
+     */
     Optional<OMDBMovieModel> getMovieByTitle(final String title);
 
+    /**
+     * Get movie by id (from OMDB API).
+     *
+     * @param id movie id.
+     * @return movie {@link OMDBMovieModel}.
+     */
     Optional<OMDBMovieModel> getMovieById(final String id);
 
 }

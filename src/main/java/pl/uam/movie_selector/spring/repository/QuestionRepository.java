@@ -12,6 +12,11 @@ import java.util.ArrayList;
 
 public interface QuestionRepository extends CrudRepository<QuestionModel, String>, PagingAndSortingRepository<QuestionModel, String> {
 
+    /**
+     * Get the list of all questions.
+     *
+     * @return list of all questions {@link QuestionModel}.
+     */
     ArrayList<QuestionModel> findAll();
 
 }

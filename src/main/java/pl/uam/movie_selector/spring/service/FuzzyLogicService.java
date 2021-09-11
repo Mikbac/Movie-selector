@@ -11,6 +11,13 @@ import java.util.ArrayList;
 
 public interface FuzzyLogicService {
 
-    ArrayList<MovieData> predictUserAnswers(ArrayList<UserQuestionData> userQuestions, long topMoviesQuantity);
+    /**
+     * Get the list of predicted movies.
+     *
+     * @param userAnswers       list of user responses.
+     * @param topMoviesQuantity quantity of returned movies.
+     * @return list of {@link MovieData}.
+     */
+    ArrayList<MovieData> predictUserAnswers(ArrayList<UserQuestionData> userAnswers, long topMoviesQuantity);
 
 }
