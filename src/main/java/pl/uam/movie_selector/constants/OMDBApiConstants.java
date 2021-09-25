@@ -7,14 +7,10 @@ package pl.uam.movie_selector.constants;
 public interface OMDBApiConstants {
 
     interface ParametersOMDB {
-        String PARAMS_PREFIX = "/?";
-        String AND = "&";
-        String EQUAL = "=";
-
         interface Name {
-            String API_KEY = "apikey" + EQUAL;
-            String MOVIE_ID = "i" + EQUAL;
-            String MOVIE_TITLE = "t" + EQUAL;
+            String API_KEY = "apikey";
+            String MOVIE_ID = "i";
+            String MOVIE_TITLE = "t";
         }
     }
 
