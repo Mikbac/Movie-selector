@@ -164,22 +164,22 @@ public class FuzzyLogicServiceImpl implements FuzzyLogicService {
         return BigDecimal.valueOf(fis.getVariable("score").getValue()).setScale(2, RoundingMode.CEILING);
     }
 
-    private ArrayList<MovieData> getNMoviesWithTheBestScore(long n) {
-        long movieQuantity = omdbMovieRepository.count();
+    private ArrayList<MovieData> getNMoviesWithTheBestScore(long bestMovieQuantity) {
+        long totalMoviesQuantity = omdbMovieRepository.count();
         try {
-            if (movieQuantity < n) {
-                throw new InvalidDataQuantityException(n);
+            if (totalMoviesQuantity < bestMovieQuantity) {
+                throw new InvalidDataQuantityException(bestMovieQuantity);
             }
         } catch (InvalidDataQuantityException e) {
-            n = movieQuantity;
-            log.warn("Updated results quantity from {} to {}!", n, movieQuantity);
+            bestMovieQuantity = totalMoviesQuantity;
+            log.warn("Updated results quantity from {} to {}!", bestMovieQuantity, totalMoviesQuantity);
         }
 
         ArrayList<MovieData> bestMovies = new ArrayList<>();
         ArrayList<MovieModel> movies = movieRepository.findAll();
         movies.sort(Comparator.comparing(MovieModel::getScore));
         Collections.reverse(movies);
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < bestMovieQuantity; i++) {
             bestMovies.add(new MovieData(movies.get(i).getName(), movies.get(i).getScore()));
         }
 
