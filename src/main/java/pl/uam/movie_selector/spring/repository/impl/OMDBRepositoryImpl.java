@@ -30,6 +30,9 @@ public class OMDBRepositoryImpl implements OMDBRepository {
     @Resource
     private OmdbProperties omdbProperties;
 
+    @Resource
+    private RestTemplate restTemplate;
+
     @Override
     public Optional<OMDBMovieModel> getMovieByTitle(final String title) {
         log.info("Get movie: {} from IMDB by title", () -> title);
@@ -50,7 +53,6 @@ public class OMDBRepositoryImpl implements OMDBRepository {
 
     private Optional<OMDBMovieModel> getMovie(final String url) {
         try {
-            final var restTemplate = new RestTemplate();
             OMDBMovieModel omdbMovieModel = restTemplate.getForObject(url, OMDBMovieModel.class);
             return Optional.ofNullable(omdbMovieModel);
         } catch (HttpClientErrorException e) {
