@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.uam.movie_selector.constants.EntityConstants;
 import pl.uam.movie_selector.constants.EntityConstants.Question;
 import pl.uam.movie_selector.model.enums.BaseVariableEnum;
 
@@ -33,7 +32,7 @@ public class QuestionModel extends Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name = EntityConstants.Question.PK)
+    @Column(nullable = false, name = Question.PK)
     private Long pk;
 
     @Column(name = Question.DESCRIPTION)

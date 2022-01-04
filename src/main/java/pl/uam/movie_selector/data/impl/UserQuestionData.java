@@ -2,9 +2,7 @@ package pl.uam.movie_selector.data.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import pl.uam.movie_selector.data.Data;
 import pl.uam.movie_selector.data.enums.AnswerEnum;
 
@@ -13,8 +11,7 @@ import pl.uam.movie_selector.data.enums.AnswerEnum;
  */
 
 @Builder
-@Getter
-@Setter
+@lombok.Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserQuestionData implements Data {

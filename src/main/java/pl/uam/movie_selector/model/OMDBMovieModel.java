@@ -14,6 +14,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pl.uam.movie_selector.constants.EntityConstants.OMDBMovie;
+
 /**
  * Created by MikBac on 21.05.2020
  */
@@ -26,85 +28,85 @@ public class OMDBMovieModel implements Serializable {
     @Id
     private String imdbID;
 
-    @JsonProperty("Title")
+    @JsonProperty(OMDBMovie.TITLE)
     private String title;
 
-    @JsonProperty("Year")
+    @JsonProperty(OMDBMovie.YEAR)
     private String tear;
 
-    @JsonProperty("Rated")
+    @JsonProperty(OMDBMovie.RATED)
     private String rated;
 
-    @JsonProperty("Released")
+    @JsonProperty(OMDBMovie.RELEASE)
     private String released;
 
-    @JsonProperty("Runtime")
+    @JsonProperty(OMDBMovie.RUNTIME)
     private String runtime;
 
-    @JsonProperty("Genre")
+    @JsonProperty(OMDBMovie.GENRE)
     private String genre;
 
-    @JsonProperty("Director")
+    @JsonProperty(OMDBMovie.DIRECTOR)
     private String director;
 
-    @JsonProperty("Writer")
+    @JsonProperty(OMDBMovie.WRITER)
     @Lob
     @Column(length = 1000)
     private String writer;
 
-    @JsonProperty("Actors")
+    @JsonProperty(OMDBMovie.ACTORS)
     private String actors;
 
-    @JsonProperty("Plot")
+    @JsonProperty(OMDBMovie.PLOT)
     @Lob
     @Column(length = 1000)
     private String plot;
 
-    @JsonProperty("Language")
+    @JsonProperty(OMDBMovie.LANGUAGE)
     private String language;
 
-    @JsonProperty("Country")
+    @JsonProperty(OMDBMovie.COUNTRY)
     private String country;
 
-    @JsonProperty("Awards")
+    @JsonProperty(OMDBMovie.AWARDS)
     private String awards;
 
-    @JsonProperty("Poster")
+    @JsonProperty(OMDBMovie.POSTER)
     private String poster;
 
-    @JsonProperty("Ratings")
+    @JsonProperty(OMDBMovie.RATINGS)
     @Embedded
     @ElementCollection
     List<OMDBRatingModel> ratings = new ArrayList<>();
 
-    @JsonProperty("Metascore")
+    @JsonProperty(OMDBMovie.METASCORE)
     private String metascore;
 
-    @JsonProperty("imdbRating")
+    @JsonProperty(OMDBMovie.IMDB_RATING)
     private String imdbRating;
 
-    @JsonProperty("imdbVotes")
+    @JsonProperty(OMDBMovie.IMDB_VOTES)
     private String imdbVotes;
 
-    @JsonProperty("Type")
+    @JsonProperty(OMDBMovie.TYPE)
     private String pype;
 
-    @JsonProperty("DVD")
+    @JsonProperty(OMDBMovie.DVD)
     private String dvd;
 
-    @JsonProperty("BoxOffice")
+    @JsonProperty(OMDBMovie.BOX_OFFICE)
     private String boxOffice;
 
-    @JsonProperty("Production")
+    @JsonProperty(OMDBMovie.PRODUCTION)
     private String production;
 
-    @JsonProperty("Website")
+    @JsonProperty(OMDBMovie.WEBSITE)
     private String website;
 
-    @JsonProperty("Response")
+    @JsonProperty(OMDBMovie.RESPONSE)
     private String response;
 
-    @JsonProperty("totalSeasons")
+    @JsonProperty(OMDBMovie.TOTAL_SEASONS)
     private String totalSeasons;
 
 }

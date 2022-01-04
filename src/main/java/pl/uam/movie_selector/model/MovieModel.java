@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.uam.movie_selector.constants.EntityConstants.Movie;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+
+import static pl.uam.movie_selector.constants.EntityConstants.Movie;
 
 /**
  * Created by MikBac on 21.05.2020

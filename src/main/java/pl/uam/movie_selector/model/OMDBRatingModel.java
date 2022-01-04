@@ -5,6 +5,8 @@ import lombok.Data;
 
 import javax.persistence.Embeddable;
 
+import static pl.uam.movie_selector.constants.EntityConstants.OMDBRating;
+
 /**
  * Created by MikBac on 21.05.2020
  */
@@ -13,10 +15,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class OMDBRatingModel {
 
-    @JsonProperty("Source")
+    @JsonProperty(OMDBRating.SOURCE)
     private String source;
 
-    @JsonProperty("value")
+    @JsonProperty(OMDBRating.VALUE)
     private String value;
 
 }
