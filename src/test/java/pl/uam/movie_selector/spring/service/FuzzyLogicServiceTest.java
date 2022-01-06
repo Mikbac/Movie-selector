@@ -27,7 +27,7 @@ public class FuzzyLogicServiceTest {
     private FuzzyLogicService fuzzyLogicService;
 
     @Test
-    public void predictUserAnswers() {
+    public void predict_user_answers() {
 
         ArrayList<UserQuestionData> userAnswers = new ArrayList<>();
 

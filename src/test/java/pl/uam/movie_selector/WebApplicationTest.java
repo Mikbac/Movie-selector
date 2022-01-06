@@ -22,7 +22,7 @@ public class WebApplicationTest {
     private MainPageController mainPageController;
 
     @Test
-    public void contextLoads() {
+    public void context_loads() {
         assertThat(mainPageController).isNotNull();
     }
 
