@@ -34,14 +34,14 @@
     
     Parameters:
     
-    | Name | Meaning |
-    | --- | --- |
-    | description | Description of the question. |
-    | base_movie_variable | Described value from IMDB (one of: RUN_TIME, RELEASED, TOTAL_SEASONS, IMDB_VOTES, METASCORE, QUANTITY_LANGUAGES, QUANTITY_COUNTRIES). |
-    | variable_name | Name in the fuzzy logic controller. |
-    | start_variable | Beginning of range for variable. |
-    | end_variable | End of range for variable. |
-    | good_value_range | User response range (+/- good_value_range). |
+    | Name                                                                                                                                   | Meaning                                                                                                                               |
+    |----------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+    | description                                                                                                                            | Description of the question.                                                                                                          |
+    | base_movie_variable                                                                                                                    | Described value from IMDB (one of: RUN_TIME, RELEASED, TOTAL_SEASONS, IMDB_VOTES, METASCORE, QUANTITY_LANGUAGES, QUANTITY_COUNTRIES). |
+    | variable_name                                                                                                                          | Name in the fuzzy logic controller.                                                                                                   |
+    | start_variable                                                                                                                         | Beginning of range for variable.                                                                                                      |
+    | end_variable                                                                                                                           | End of range for variable.                                                                                                            |
+    | good_value_range                                                                                                                       | User response range (+/- good_value_range).                                                                                           |
 
 
 * Personalize movie list:
